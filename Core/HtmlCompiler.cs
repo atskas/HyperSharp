@@ -4,12 +4,12 @@ namespace HypertextSharp.Core;
 
 internal class HtmlCompiler
 {
-    private string? output = null;
+    public string? OutputPath { get; set; } = null;
     
     public void Compile(string html)
     {
         // Get the user's documents folder
-        string outputParentPath = output ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string outputParentPath = OutputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         // Subfolder inside of documents for output
         string outputDir = Path.Combine(outputParentPath, "HypertextSharp_Output");
