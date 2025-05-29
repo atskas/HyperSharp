@@ -1,6 +1,6 @@
 namespace HypertextSharp.Core;
 
-public class Html
+public class HtmlDocument
 {
     private HtmlBuilder builder = new HtmlBuilder();
     private HtmlCompiler compiler = new HtmlCompiler();
@@ -16,6 +16,45 @@ public class Html
     /// Declares HTML5, should be the very first line.
     /// </summary>
     public void DOCTYPE() => builder.Append("<!DOCTYPE html>\n");
+
+    /// <summary>
+    /// Root element of an HTML document.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    public void Html(Action innerContent)
+    {
+        builder.Append($"{Indent()}<html>\n");
+        indentLevel++;
+        innerContent();
+        indentLevel--;
+        builder.Append($"{Indent()}</html>\n");
+    }
+    
+    /// <summary>
+    /// Contains metadata and resources needed by the browser but not directly displayed.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    public void Head(Action innerContent)
+    {
+        builder.Append($"{Indent()}<head>\n");
+        indentLevel++;
+        innerContent();
+        indentLevel--;
+        builder.Append($"{Indent()}</head>\n");
+    }
+
+    /// <summary>
+    /// Contains the visible content of the webpage.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    public void Body(Action innerContent)
+    {
+        builder.Append($"{Indent()}<body>\n");
+        indentLevel++;
+        innerContent();
+        indentLevel--;
+        builder.Append($"{Indent()}</body>\n");
+    }
     
     /// <summary>
     /// Container element used to group other elements together.
