@@ -5,15 +5,25 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        HtmlDocument htmlDocument = new HtmlDocument();
+        HtmlDocument HTML = new HtmlDocument();
 
-        htmlDocument.DOCTYPE();
-        htmlDocument.Div(() =>
+        HTML.DOCTYPE();
+        HTML.Html(() =>
         {
-            htmlDocument.Span("Text");
-            htmlDocument.Span(() => htmlDocument.Span("Nested Text"));
+            HTML.Head(() =>
+            {
+            });
+
+            HTML.Body(() =>
+            {
+                HTML.Div(() =>
+                {
+                    HTML.Span("This is inside the body.");
+                });
+            });
         });
         
-        htmlDocument.Compile(htmlDocument.GetHtml());
+        // Compile document
+        HTML.Compile(HTML.GetHtml());
     }
 }
