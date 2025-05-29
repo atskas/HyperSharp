@@ -10,6 +10,7 @@ public class HtmlDocument
     private int indentLevel = 0;
     private string Indent() => new string(' ', indentLevel * 2);
     
+    
     #region Html Elements
     
     /// <summary>
@@ -109,5 +110,11 @@ public class HtmlDocument
     /// <param name="path"></param>
 
     public void SetOutputPath(string path) => compiler.OutputPath = path;
+    
+    /// <summary>
+    /// Sets file name.
+    /// </summary>
+    /// <param name="fileName"></param>
+    public void SetFileName(string fileName) => compiler.OutputFileName = fileName;
     
 }

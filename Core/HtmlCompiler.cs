@@ -5,6 +5,7 @@ namespace HypertextSharp.Core;
 internal class HtmlCompiler
 {
     public string? OutputPath { get; set; } = null;
+    public string? OutputFileName { get; set; } = null;
     
     public void Compile(string html)
     {
@@ -17,7 +18,7 @@ internal class HtmlCompiler
         // Ensure the directory exists
         Directory.CreateDirectory(outputDir);
 
-        string outputPath = Path.Combine(outputDir, "output.html");
+        string outputPath = Path.Combine(outputDir, OutputFileName ?? "output.html");
 
         Console.WriteLine($"Writing output to: {outputPath}");
 
