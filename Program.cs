@@ -24,6 +24,7 @@ public class Program
         });
         
         // Compile document
+        HTML.SetFileName("test1.html");
         HTML.Compile(HTML.GetHtml());
     }
 }
