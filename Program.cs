@@ -18,7 +18,7 @@ public class Program
             {
                 HTML.Div(() =>
                 {
-                    HTML.Span("This is inside the body.");
+                    HTML.Span("Hello, world!");
                 });
             });
         });
