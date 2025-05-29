@@ -7,7 +7,12 @@ public class Program
     {
         Html Html = new Html();
 
-        Html.Div(() => Html.Span("Text"));
+        Html.DOCTYPE();
+        Html.Div(() =>
+        {
+            Html.Span("Text");
+            Html.Span(() => Html.Span("Nested Text"));
+        });
         
         Html.Compile(Html.GetHtml());
     }
