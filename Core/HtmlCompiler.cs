@@ -13,7 +13,7 @@ internal class HtmlCompiler
         string outputParentPath = OutputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         // Subfolder inside of documents for output
-        string outputDir = Path.Combine(outputParentPath, "HypertextSharp_Output");
+        string outputDir = Path.Combine(outputParentPath, "HyperSharp_Output");
 
         // Ensure the directory exists
         Directory.CreateDirectory(outputDir);
