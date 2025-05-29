@@ -22,9 +22,5 @@ public class Html
     public string GetHtml() => builder.ToString();
     public void Compile(string output) => compiler.Compile(output);
 
-    public string OutputPath
-    {
-        get => compiler.OutputPath;
-        set => compiler.OutputPath = value;
-    }
+    public void SetOutputPath(string path) => compiler.OutputPath = path;
 }
