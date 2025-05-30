@@ -18,16 +18,11 @@ public class Program
             {
                 HTML.Div(() =>
                 {
-                    HTML.Span("Hello, world!", new AttributeBuilder()
-                        .Class("red-text")
-                        .Style("color:red; font-size:18px;")
-                        .Attributes);
-                }, new AttributeBuilder()
-                    .Id("container")
-                    .Class("box")
-                    .Attributes);
+                    HTML.Span("Hello, world!");
+                }, HTML.Id("container").Class("box").Style("background: blue;").Attributes);
             });
         });
+
         
         HTML.SetFileName("test1.html");
         HTML.Compile();

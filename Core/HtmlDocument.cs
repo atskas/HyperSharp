@@ -81,7 +81,7 @@ public class HtmlDocument
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    public void Div(Dictionary<string, string> attributes ,Action innerContent)
     {
         var div = new HtmlElement("div");
         foreach(var attr in attributes)
@@ -89,6 +89,24 @@ public class HtmlDocument
         
         elementStack.Peek().AddChild(div);
         
+        elementStack.Push(div);
+        innerContent();
+        elementStack.Pop();
+    }
+    
+    /// <summary>
+    /// Container element used to group other elements together.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    /// <param name="attributes"></param>
+    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    {
+        var div = new HtmlElement("div");
+        foreach (var attr in attributes)
+            div.SetAttribute(attr.Key, attr.Value);
+
+        elementStack.Peek().AddChild(div);
+
         elementStack.Push(div);
         innerContent();
         elementStack.Pop();
@@ -122,7 +140,7 @@ public class HtmlDocument
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    public void Span(Dictionary<string, string> attributes ,Action innerContent)
     {
         var span = new HtmlElement("span");
         foreach(var attr in attributes)
@@ -140,7 +158,7 @@ public class HtmlDocument
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Span(string innerContent, Dictionary<string, string> attributes)
+    public void Span(Dictionary<string, string> attributes ,string innerContent)
     {
         var span = new HtmlElement("span") { InnerText = innerContent };
         foreach(var attr in attributes)
@@ -148,6 +166,25 @@ public class HtmlDocument
         
         elementStack.Peek().AddChild(span);
     }
+    
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    /// <param name="attributes"></param>
+    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span");
+        foreach (var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+
+        elementStack.Peek().AddChild(span);
+
+        elementStack.Push(span);
+        innerContent();
+        elementStack.Pop();
+    }
+
     
     #endregion
     /// <summary>
@@ -173,7 +210,27 @@ public class HtmlDocument
         // Write built HTML content to file with HtmlCompiler
         compiler.Compile(builder.ToString());
     }
-
+    
+    /// <summary>
+    /// Used to specify a unique id for an HTML element.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public AttributeBuilder Id(string id) => new AttributeBuilder().Id(id);
+    
+    /// <summary>
+    /// Assigns CSS classes to an element for styling or scripting.
+    /// </summary>
+    /// <param name="className"></param>
+    /// <returns></returns>
+    public AttributeBuilder Class(string className) => new AttributeBuilder().Class(className);
+    
+    /// <summary>
+    /// Adds inline CSS styles directly to an element.
+    /// </summary>
+    /// <param name="style"></param>
+    /// <returns></returns>
+    public AttributeBuilder Style(string style) => new AttributeBuilder().Style(style);
     
     /// <summary>
     /// Sets file output path.
