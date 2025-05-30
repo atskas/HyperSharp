@@ -12,13 +12,28 @@ public class AttributeBuilder
 
     public AttributeBuilder Class(string className)
     {
-        Attributes["class"] = className;
+        if (Attributes.ContainsKey("class"))
+        {
+            Attributes["class"] += " " + className;
+        }
+        else
+        {
+            Attributes["class"] = className;
+        }
         return this;
     }
 
+
     public AttributeBuilder Style(string style)
     {
-        Attributes["style"] = style;
+        if (Attributes.ContainsKey("style"))
+        {
+            Attributes["style"] += " " + style;
+        }
+        else
+        {
+            Attributes["style"] = style;
+        }
         return this;
     }
 }
