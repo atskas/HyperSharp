@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace HypertextSharp.Core;
+namespace HyperSharp.Core;
 
 public class HtmlBuilder
 {

@@ -1,8 +1,7 @@
-using System.Runtime.InteropServices;
 using HyperSharp.Elements;
 using HyperSharp.Utils;
 
-namespace HypertextSharp.Core;
+namespace HyperSharp.Core;
 
 public class HtmlDocument
 {

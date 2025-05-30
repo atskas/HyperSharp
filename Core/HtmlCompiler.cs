@@ -1,6 +1,4 @@
-using System;
-using System.IO;
-namespace HypertextSharp.Core;
+namespace HyperSharp.Core;
 
 internal class HtmlCompiler
 {
