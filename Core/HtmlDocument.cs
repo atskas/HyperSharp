@@ -1,15 +1,12 @@
+using HyperSharp.Utils;
+
 namespace HypertextSharp.Core;
 
 public class HtmlDocument
 {
     private HtmlBuilder builder = new HtmlBuilder();
     private HtmlCompiler compiler = new HtmlCompiler();
-    
-    // Helper method for indentation
-    // helps keep HTML clean
-    private int indentLevel = 0;
-    private string Indent() => new string(' ', indentLevel * 2);
-    
+    private IndentationHelper indentation = new IndentationHelper();
     
     #region Html Elements
     
@@ -24,11 +21,11 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Html(Action innerContent)
     {
-        builder.Append($"{Indent()}<html>\n");
-        indentLevel++;
+        builder.Append($"{indentation.Indent()}<html>\n");
+        indentation.indentLevel++;
         innerContent();
-        indentLevel--;
-        builder.Append($"{Indent()}</html>\n");
+        indentation.indentLevel--;
+        builder.Append($"{indentation.Indent()}</html>\n");
     }
     
     /// <summary>
@@ -37,11 +34,11 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Head(Action innerContent)
     {
-        builder.Append($"{Indent()}<head>\n");
-        indentLevel++;
+        builder.Append($"{indentation.Indent()}<head>\n");
+        indentation.indentLevel++;
         innerContent();
-        indentLevel--;
-        builder.Append($"{Indent()}</head>\n");
+        indentation.indentLevel--;
+        builder.Append($"{indentation.Indent()}</head>\n");
     }
 
     /// <summary>
@@ -50,11 +47,11 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Body(Action innerContent)
     {
-        builder.Append($"{Indent()}<body>\n");
-        indentLevel++;
+        builder.Append($"{indentation.Indent()}<body>\n");
+        indentation.indentLevel++;
         innerContent();
-        indentLevel--;
-        builder.Append($"{Indent()}</body>\n");
+        indentation.indentLevel--;
+        builder.Append($"{indentation.Indent()}</body>\n");
     }
     
     /// <summary>
@@ -63,11 +60,11 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Div(Action innerContent)
     {
-        builder.Append($"{Indent()}<div>\n");
-        indentLevel++;
+        builder.Append($"{indentation.Indent()}<div>\n");
+        indentation.indentLevel++;
         innerContent();
-        indentLevel--;
-        builder.Append($"{Indent()}</div>\n");
+        indentation.indentLevel--;
+        builder.Append($"{indentation.Indent()}</div>\n");
     }
 
     /// <summary>
@@ -76,7 +73,7 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Span(string innerContent)
     {
-        builder.Append($"{Indent()}<span>{innerContent}</span>\n");;
+        builder.Append($"{indentation.Indent()}<span>{innerContent}</span>\n");;
     }
 
     /// <summary>
@@ -84,11 +81,11 @@ public class HtmlDocument
     /// </summary>
     public void Span(Action innerContent)
     {
-        builder.Append($"{Indent()}<span>\n");
-        indentLevel++;
+        builder.Append($"{indentation.Indent()}<span>\n");
+        indentation.indentLevel++;
         innerContent();
-        indentLevel--;
-        builder.Append($"{Indent()}</span>\n");
+        indentation. indentLevel--;
+        builder.Append($"{indentation.Indent()}</span>\n");
     }
     
     #endregion
