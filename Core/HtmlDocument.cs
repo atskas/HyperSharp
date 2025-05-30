@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using HyperSharp.Elements;
 using HyperSharp.Utils;
 
@@ -76,17 +77,35 @@ public class HtmlDocument
     }
 
     /// <summary>
+    /// Container element used to group other elements together.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    {
+        var div = new HtmlElement("div");
+        foreach(var attr in attributes)
+            div.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(div);
+        
+        elementStack.Push(div);
+        innerContent();
+        elementStack.Pop();
+    }
+
+    /// <summary>
     /// Generic inline container element for phrasing content.
     /// </summary>
     /// <param name="innerContent"></param>
     public void Span(string innerContent)
     {
-        var span =  new HtmlElement("span") { InnerText = innerContent };
+        var span = new HtmlElement("span") { InnerText = innerContent };
         elementStack.Peek().AddChild(span);
     }
 
     /// <summary>
-    /// Generic inline container element for phrasing content with nested elements.
+    /// Generic inline container element for phrasing content.
     /// </summary>
     public void Span(Action innerContent)
     {
@@ -96,6 +115,38 @@ public class HtmlDocument
         elementStack.Push(span);
         innerContent();
         elementStack.Pop();
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span");
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
+        
+        elementStack.Push(span);
+        innerContent();
+        elementStack.Pop();
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(string innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
     }
     
     #endregion
