@@ -5,11 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>HypertextSharp</RootNamespace>
+    <RootNamespace>HyperSharp</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Output\" />
-  </ItemGroup>
 
 </Project>
