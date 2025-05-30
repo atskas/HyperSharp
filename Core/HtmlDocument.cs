@@ -184,6 +184,20 @@ public class HtmlDocument
         innerContent();
         elementStack.Pop();
     }
+    
+    /// <summary>
+    /// Generic inline container for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(string innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
+    }
 
     
     #endregion

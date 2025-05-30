@@ -8,6 +8,13 @@ public class Program
     {
         HtmlDocument HTML = new HtmlDocument();
         
+        // Prepare the attributes before building the tree
+        var earthStyle = HTML.Id("earth")
+            .Class("box")
+            .Style("background-color: brown;")
+            .Style("color: white;")
+            .Style("padding: 10px;");
+
         HTML.Html(() =>
         {
             HTML.Head(() =>
@@ -18,12 +25,11 @@ public class Program
             {
                 HTML.Div(() =>
                 {
-                    HTML.Span("Hello, world!");
-                }, HTML.Id("container").Class("box").Style("background: blue;").Attributes);
+                    HTML.Span("Hello, world!", earthStyle.Attributes);
+                });
             });
         });
 
-        
         HTML.SetFileName("test1.html");
         HTML.Compile();
     }
