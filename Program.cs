@@ -7,7 +7,6 @@ public class Program
     {
         HtmlDocument HTML = new HtmlDocument();
 
-        HTML.DOCTYPE();
         HTML.Html(() =>
         {
             HTML.Head(() =>
@@ -25,6 +24,6 @@ public class Program
         
         // Compile document
         HTML.SetFileName("test1.html");
-        HTML.Compile(HTML.GetHtml());
+        HTML.Compile();
     }
 }

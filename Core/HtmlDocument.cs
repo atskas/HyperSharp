@@ -1,3 +1,4 @@
+using HyperSharp.Elements;
 using HyperSharp.Utils;
 
 namespace HypertextSharp.Core;
@@ -7,13 +8,16 @@ public class HtmlDocument
     private HtmlBuilder builder = new HtmlBuilder();
     private HtmlCompiler compiler = new HtmlCompiler();
     private IndentationHelper indentation = new IndentationHelper();
+    private HtmlElement? root;
+    
+    private readonly Stack<HtmlElement> elementStack = new Stack<HtmlElement>();
     
     #region Html Elements
     
     /// <summary>
     /// Declares HTML5, should be the very first line.
     /// </summary>
-    public void DOCTYPE() => builder.Append("<!DOCTYPE html>\n");
+    public void Doctype() => builder.Append("<!DOCTYPE html>\n");
 
     /// <summary>
     /// Root element of an HTML document.
@@ -21,11 +25,12 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Html(Action innerContent)
     {
-        builder.Append($"{indentation.Indent()}<html>\n");
-        indentation.indentLevel++;
+        var html = new HtmlElement("html");
+        if (root == null) root = html;
+
+        elementStack.Push(html);
         innerContent();
-        indentation.indentLevel--;
-        builder.Append($"{indentation.Indent()}</html>\n");
+        elementStack.Pop();
     }
     
     /// <summary>
@@ -34,11 +39,12 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Head(Action innerContent)
     {
-        builder.Append($"{indentation.Indent()}<head>\n");
-        indentation.indentLevel++;
+        var head = new HtmlElement("head");
+        elementStack.Peek().AddChild(head);
+
+        elementStack.Push(head);
         innerContent();
-        indentation.indentLevel--;
-        builder.Append($"{indentation.Indent()}</head>\n");
+        elementStack.Pop();
     }
 
     /// <summary>
@@ -47,11 +53,12 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Body(Action innerContent)
     {
-        builder.Append($"{indentation.Indent()}<body>\n");
-        indentation.indentLevel++;
+        var body = new HtmlElement("body");
+        elementStack.Peek().AddChild(body);
+        
+        elementStack.Push(body);
         innerContent();
-        indentation.indentLevel--;
-        builder.Append($"{indentation.Indent()}</body>\n");
+        elementStack.Pop();
     }
     
     /// <summary>
@@ -60,11 +67,12 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Div(Action innerContent)
     {
-        builder.Append($"{indentation.Indent()}<div>\n");
-        indentation.indentLevel++;
+        var div = new HtmlElement("div");
+        elementStack.Peek().AddChild(div);
+        
+        elementStack.Push(div);
         innerContent();
-        indentation.indentLevel--;
-        builder.Append($"{indentation.Indent()}</div>\n");
+        elementStack.Pop();
     }
 
     /// <summary>
@@ -73,7 +81,8 @@ public class HtmlDocument
     /// <param name="innerContent"></param>
     public void Span(string innerContent)
     {
-        builder.Append($"{indentation.Indent()}<span>{innerContent}</span>\n");;
+        var span =  new HtmlElement("span") { InnerText = innerContent };
+        elementStack.Peek().AddChild(span);
     }
 
     /// <summary>
@@ -81,11 +90,12 @@ public class HtmlDocument
     /// </summary>
     public void Span(Action innerContent)
     {
-        builder.Append($"{indentation.Indent()}<span>\n");
-        indentation.indentLevel++;
+        var span  = new HtmlElement("span");
+        elementStack.Peek().AddChild(span);
+        
+        elementStack.Push(span);
         innerContent();
-        indentation. indentLevel--;
-        builder.Append($"{indentation.Indent()}</span>\n");
+        elementStack.Pop();
     }
     
     #endregion
@@ -99,7 +109,20 @@ public class HtmlDocument
     /// Compiles document to an html file.
     /// </summary>
     /// <param name="output"></param>
-    public void Compile(string output) => compiler.Compile(output);
+    public void Compile()
+    {
+        builder.Clear(); // Clear previous content
+        builder.Append("<!DOCTYPE html>\n");  // Add doctype at top
+
+        if (root != null)
+        {
+            builder.Append(root.Build(indentation));
+        }
+        
+        // Write built HTML content to file with HtmlCompiler
+        compiler.Compile(builder.ToString());
+    }
+
     
     /// <summary>
     /// Sets file output path.
