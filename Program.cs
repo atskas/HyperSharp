@@ -19,17 +19,15 @@ public class Program
         
         var style1 = html.Style("width: 200px; height: 200px; margin: 0 auto;");
         
-        html.Html(() =>
-        {
-            html.Head(() =>
-            {
-            });
 
-            html.Body(() =>
-            {
-                html.Div(() => { html.Span("Hello, world!", earthStyle.Attributes); }, style1.Attributes);
-                html.Div(() => { html.Span("Goodbye, world!", fireStyle.Attributes); }, style1.Attributes);
-            });
+        html.Head(() =>
+        {
+        });
+
+        html.Body(() =>
+        {
+            html.Div(() => { html.Span("Hello, world!", earthStyle.Attributes); }, style1.Attributes);
+            html.Div(() => { html.Span("Goodbye, world!", fireStyle.Attributes); }, style1.Attributes);
         });
 
         html.SetFileName("test1.html");

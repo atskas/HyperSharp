@@ -9,7 +9,7 @@ public class HtmlDocument
     private HtmlBuilder builder = new HtmlBuilder();
     private HtmlCompiler compiler = new HtmlCompiler();
     private IndentationHelper indentation = new IndentationHelper();
-    internal HtmlRoot? root;
+    internal HtmlRoot root;
     
     internal readonly Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
     
@@ -79,13 +79,8 @@ public class HtmlDocument
     /// <inheritdoc cref="HtmlHead.Head(Action)"/>
     public void Head(Action innerContent)
     {
-        if (ElementStack.Count == 0)
-        {
-            Console.WriteLine("No Html element found. Head cannot be created.");
-            return;
-        }
-        else
-            htmlHead.Head(innerContent);
+        EnsureRoot();
+        htmlHead.Head(innerContent);
     }
     
     #endregion
@@ -94,13 +89,8 @@ public class HtmlDocument
     /// <inheritdoc cref="HtmlBody.Body(Action)"/>
     public void Body(Action innerContent)
     {
-        if (ElementStack.Count == 0)
-        {
-            Console.WriteLine("No Html element found. Body cannot be created.");
-            return;
-        }
-        else
-            htmlBody.Body(innerContent);
+        EnsureRoot();
+        htmlBody.Body(innerContent);
     }
     
     #endregion
@@ -121,9 +111,11 @@ public class HtmlDocument
         builder.Clear(); // Clear previous content
         builder.Append("<!DOCTYPE html>\n");  // Add doctype at top
 
-        if (root == null || root.Children.Count <= 0)
+        if (root == null || root.Children.Count <= 0 || ElementStack.Count == 0)
         {
             Console.WriteLine("Warning: Html() was not called.");
+            Console.WriteLine("Automatically wrapping content.");
+            root.Html(() => {});
         }
         
         builder.Append(root.Build(indentation));
@@ -164,5 +156,18 @@ public class HtmlDocument
     /// </summary>
     /// <param name="fileName"></param>
     public void SetFileName(string fileName) => compiler.OutputFileName = fileName;
-    
+
+    /// <summary>
+    /// Automatically wraps content in Html tag if it's not present.
+    /// </summary>
+    private void EnsureRoot()
+    {
+        if (root.Children.Count == 0 && ElementStack.Count == 0)
+        {
+            Console.WriteLine("Html() was not called.");
+            Console.WriteLine("Automatically wrapping content.");
+            root.Html(() => {});
+            ElementStack.Push(root);
+        }
+    }
 }
