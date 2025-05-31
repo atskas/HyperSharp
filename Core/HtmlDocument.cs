@@ -11,7 +11,7 @@ public class HtmlDocument
     private IndentationHelper indentation = new IndentationHelper();
     internal HtmlRoot? root;
     
-    internal Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
+    internal readonly Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
     
     // Elements
     private readonly HtmlDiv divHelper;
@@ -71,19 +71,37 @@ public class HtmlDocument
     #region Html
     
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
-    public void Html(Action innerContent) => root.Html(innerContent);
+    public void Html(Action innerContent) => root?.Html(innerContent);
     
     #endregion
     #region Head
-    
+
     /// <inheritdoc cref="HtmlHead.Head(Action)"/>
-    public void Head(Action innerContent) => htmlHead.Head(innerContent);
+    public void Head(Action innerContent)
+    {
+        if (ElementStack.Count == 0)
+        {
+            Console.WriteLine("No Html element found. Head cannot be created.");
+            return;
+        }
+        else
+            htmlHead.Head(innerContent);
+    }
     
     #endregion
     #region Body
-    
+
     /// <inheritdoc cref="HtmlBody.Body(Action)"/>
-    public void Body(Action innerContent) => htmlBody.Body(innerContent);
+    public void Body(Action innerContent)
+    {
+        if (ElementStack.Count == 0)
+        {
+            Console.WriteLine("No Html element found. Body cannot be created.");
+            return;
+        }
+        else
+            htmlBody.Body(innerContent);
+    }
     
     #endregion
     #endregion
@@ -103,11 +121,14 @@ public class HtmlDocument
         builder.Clear(); // Clear previous content
         builder.Append("<!DOCTYPE html>\n");  // Add doctype at top
 
-        if (root != null)
+        if (root == null || root.Children.Count <= 0)
         {
-            builder.Append(root.Build(indentation));
+            Console.WriteLine("Warning: Html() was not called.");
+            Console.WriteLine("Make sure to wrap content with Html.");
+            return;
         }
         
+        builder.Append(root.Build(indentation));
         // Write built HTML content to file with HtmlCompiler
         compiler.Compile(builder.ToString());
     }
