@@ -1,4 +1,5 @@
 using HyperSharp.Elements;
+using HyperSharp.Elements.Elements;
 using HyperSharp.Utils;
 
 namespace HyperSharp.Core;
@@ -8,198 +9,85 @@ public class HtmlDocument
     private HtmlBuilder builder = new HtmlBuilder();
     private HtmlCompiler compiler = new HtmlCompiler();
     private IndentationHelper indentation = new IndentationHelper();
-    private HtmlElement? root;
+    internal HtmlRoot? root;
     
-    private readonly Stack<HtmlElement> elementStack = new Stack<HtmlElement>();
+    internal Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
     
-    #region Html Elements
+    // Elements
+    private readonly HtmlDiv divHelper;
+    private readonly HtmlSpan spanHelper;
+    private readonly HtmlHead htmlHead;
+    private readonly HtmlBody htmlBody;
+
+    public HtmlDocument()
+    {
+        // Pass all elements to the document
+        divHelper = new HtmlDiv(ElementStack);
+        spanHelper = new HtmlSpan(ElementStack);
+        root = new HtmlRoot(ElementStack);
+        htmlHead = new HtmlHead(ElementStack);
+        htmlBody = new HtmlBody(ElementStack);
+    }
     
     /// <summary>
     /// Declares HTML5, should be the very first line.
     /// </summary>
     public void Doctype() => builder.Append("<!DOCTYPE html>\n");
-
-    /// <summary>
-    /// Root element of an HTML document.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    public void Html(Action innerContent)
-    {
-        var html = new HtmlElement("html");
-        if (root == null) root = html;
-
-        elementStack.Push(html);
-        innerContent();
-        elementStack.Pop();
-    }
     
-    /// <summary>
-    /// Contains metadata and resources needed by the browser but not directly displayed.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    public void Head(Action innerContent)
-    {
-        var head = new HtmlElement("head");
-        elementStack.Peek().AddChild(head);
-
-        elementStack.Push(head);
-        innerContent();
-        elementStack.Pop();
-    }
-
-    /// <summary>
-    /// Contains the visible content of the webpage.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    public void Body(Action innerContent)
-    {
-        var body = new HtmlElement("body");
-        elementStack.Peek().AddChild(body);
-        
-        elementStack.Push(body);
-        innerContent();
-        elementStack.Pop();
-    }
+    #region Forwarded element calls
+    #region Div
     
-    /// <summary>
-    /// Container element used to group other elements together.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    public void Div(Action innerContent)
-    {
-        var div = new HtmlElement("div");
-        elementStack.Peek().AddChild(div);
-        
-        elementStack.Push(div);
-        innerContent();
-        elementStack.Pop();
-    }
-
-    /// <summary>
-    /// Container element used to group other elements together.
-    /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
-    public void Div(Dictionary<string, string> attributes ,Action innerContent)
-    {
-        var div = new HtmlElement("div");
-        foreach(var attr in attributes)
-            div.SetAttribute(attr.Key, attr.Value);
-        
-        elementStack.Peek().AddChild(div);
-        
-        elementStack.Push(div);
-        innerContent();
-        elementStack.Pop();
-    }
+    /// <inheritdoc cref="HtmlDiv.Div(Action)"/>
+    public void Div(Action innerContent) => divHelper.Div(innerContent);
     
-    /// <summary>
-    /// Container element used to group other elements together.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    /// <param name="attributes"></param>
-    public void Div(Action innerContent, Dictionary<string, string> attributes)
-    {
-        var div = new HtmlElement("div");
-        foreach (var attr in attributes)
-            div.SetAttribute(attr.Key, attr.Value);
-
-        elementStack.Peek().AddChild(div);
-
-        elementStack.Push(div);
-        innerContent();
-        elementStack.Pop();
-    }
-
-    /// <summary>
-    /// Generic inline container element for phrasing content.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    public void Span(string innerContent)
-    {
-        var span = new HtmlElement("span") { InnerText = innerContent };
-        elementStack.Peek().AddChild(span);
-    }
-
-    /// <summary>
-    /// Generic inline container element for phrasing content.
-    /// </summary>
-    public void Span(Action innerContent)
-    {
-        var span  = new HtmlElement("span");
-        elementStack.Peek().AddChild(span);
-        
-        elementStack.Push(span);
-        innerContent();
-        elementStack.Pop();
-    }
-
-    /// <summary>
-    /// Generic inline container element for phrasing content.
-    /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
-    public void Span(Dictionary<string, string> attributes ,Action innerContent)
-    {
-        var span = new HtmlElement("span");
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
-        elementStack.Peek().AddChild(span);
-        
-        elementStack.Push(span);
-        innerContent();
-        elementStack.Pop();
-    }
-
-    /// <summary>
-    /// Generic inline container element for phrasing content.
-    /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
-    public void Span(Dictionary<string, string> attributes ,string innerContent)
-    {
-        var span = new HtmlElement("span") { InnerText = innerContent };
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
-        elementStack.Peek().AddChild(span);
-    }
+    /// <inheritdoc cref="HtmlDiv.Div(Dictionary{string, string} ,Action)"/>
+    public void Div(Dictionary<string, string> attributes, Action innerContent) => divHelper.Div(attributes, innerContent);
     
-    /// <summary>
-    /// Generic inline container element for phrasing content.
-    /// </summary>
-    /// <param name="innerContent"></param>
-    /// <param name="attributes"></param>
-    public void Span(Action innerContent, Dictionary<string, string> attributes)
-    {
-        var span = new HtmlElement("span");
-        foreach (var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-
-        elementStack.Peek().AddChild(span);
-
-        elementStack.Push(span);
-        innerContent();
-        elementStack.Pop();
-    }
-    
-    /// <summary>
-    /// Generic inline container for phrasing content.
-    /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
-    public void Span(string innerContent, Dictionary<string, string> attributes)
-    {
-        var span = new HtmlElement("span") { InnerText = innerContent };
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
-        elementStack.Peek().AddChild(span);
-    }
-
+    /// <inheritdoc cref="HtmlDiv.Div(Action, Dictionary{string, string})"/>
+    public void Div(Action innerContent, Dictionary<string, string> attributes) => divHelper.Div(innerContent, attributes); 
     
     #endregion
+    #region Span
+    
+    /// <inheritdoc cref="HtmlSpan.Span(string)"/>
+    public void Span(string innerContent) => spanHelper.Span(innerContent);
+    
+    /// <inheritdoc cref="HtmlSpan.Span(Action)"/>
+    public void Span(Action innerConent)  => spanHelper.Span(innerConent);
+    
+    /// <inheritdoc cref="HtmlSpan.Span(string, Dictionary{string, string})"/>
+    public void Span(string innerContent, Dictionary<string, string> attributes) => spanHelper.Span(innerContent, attributes);
+    
+    /// <inheritdoc cref="HtmlSpan.Span(Action, Dictionary{string, string})"/>
+    public void Span(Action innerContent, Dictionary<string, string> attributes)  => spanHelper.Span(innerContent, attributes);
+    
+    /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, string)"/>
+    public void Span(Dictionary<string, string> attributes, string innerContent) => spanHelper.Span(attributes, innerContent);
+    
+    /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, Action)"/>
+    public void Span(Dictionary<string, string> attributes, Action innerContent) => spanHelper.Span(attributes, innerContent);
+    
+    #endregion
+    #region Html
+    
+    /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
+    public void Html(Action innerContent) => root.Html(innerContent);
+    
+    #endregion
+    #region Head
+    
+    /// <inheritdoc cref="HtmlHead.Head(Action)"/>
+    public void Head(Action innerContent) => htmlHead.Head(innerContent);
+    
+    #endregion
+    #region Body
+    
+    /// <inheritdoc cref="HtmlBody.Body(Action)"/>
+    public void Body(Action innerContent) => htmlBody.Body(innerContent);
+    
+    #endregion
+    #endregion
+    
     /// <summary>
     /// Builds document to a string.
     /// </summary>

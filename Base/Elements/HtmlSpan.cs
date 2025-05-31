@@ -1,0 +1,100 @@
+using HyperSharp.Core;
+
+namespace HyperSharp.Elements.Elements;
+
+internal class HtmlSpan : HtmlElement
+{
+    private readonly Stack<HtmlElement> elementStack;
+    
+    public HtmlSpan(Stack<HtmlElement> elementStack) : base("span")
+    {
+        this.elementStack = elementStack;
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    public void Span(string innerContent)
+    {
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        elementStack.Peek().AddChild(span);
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    public void Span(Action innerContent)
+    {
+        var span  = new HtmlElement("span");
+        elementStack.Peek().AddChild(span);
+        
+        elementStack.Push(span);
+        innerContent();
+        elementStack.Pop();
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(Dictionary<string, string> attributes ,Action innerContent)
+    {
+        var span = new HtmlElement("span");
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
+        
+        elementStack.Push(span);
+        innerContent();
+        elementStack.Pop();
+    }
+
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(Dictionary<string, string> attributes ,string innerContent)
+    {
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
+    }
+    
+    /// <summary>
+    /// Generic inline container element for phrasing content.
+    /// </summary>
+    /// <param name="innerContent"></param>
+    /// <param name="attributes"></param>
+    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span");
+        foreach (var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+
+        elementStack.Peek().AddChild(span);
+
+        elementStack.Push(span);
+        innerContent();
+        elementStack.Pop();
+    }
+    
+    /// <summary>
+    /// Generic inline container for phrasing content.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Span(string innerContent, Dictionary<string, string> attributes)
+    {
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        foreach(var attr in attributes)
+            span.SetAttribute(attr.Key, attr.Value);
+        
+        elementStack.Peek().AddChild(span);
+    }
+}
