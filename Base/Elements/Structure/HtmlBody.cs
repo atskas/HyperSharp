@@ -6,7 +6,7 @@ internal class HtmlBody : HtmlElement
 {
     private readonly Stack<HtmlElement> elementStack;
     
-    public HtmlBody(Stack<HtmlElement> elementStack) : base("head")
+    public HtmlBody(Stack<HtmlElement> elementStack) : base("body")
     {
         this.elementStack = elementStack;
     }

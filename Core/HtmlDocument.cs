@@ -124,8 +124,6 @@ public class HtmlDocument
         if (root == null || root.Children.Count <= 0)
         {
             Console.WriteLine("Warning: Html() was not called.");
-            Console.WriteLine("Make sure to wrap content with Html.");
-            return;
         }
         
         builder.Append(root.Build(indentation));
