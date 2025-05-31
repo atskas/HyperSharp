@@ -13,22 +13,11 @@ public class Program
             .Style("padding: 10px;")
             .Style("font-family: Arial;");
         
-        var fireStyle = html.Id("fire")
-            .Style("color: red;")
-            .Style("padding: 10px;");
-        
         var style1 = html.Style("width: 200px; height: 200px; margin: 0 auto;");
         
-
-        html.Head(() =>
-        {
-        });
-
-        html.Body(() =>
-        {
-            html.Div(() => { html.Span("Hello, world!", earthStyle.Attributes); }, style1.Attributes);
-            html.Div(() => { html.Span("Goodbye, world!", fireStyle.Attributes); }, style1.Attributes);
-        });
+        // Content will automatically be wrapped in html tag
+        // even though I don't call it
+        html.Span("Hello!", earthStyle.Attributes);
 
         html.SetFileName("test1.html");
         html.Compile();

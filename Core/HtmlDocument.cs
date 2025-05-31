@@ -36,36 +36,72 @@ public class HtmlDocument
     
     #region Forwarded element calls
     #region Div
-    
+
     /// <inheritdoc cref="HtmlDiv.Div(Action)"/>
-    public void Div(Action innerContent) => divHelper.Div(innerContent);
-    
+    public void Div(Action innerContent)
+    {
+        EnsureRoot();
+        divHelper.Div(innerContent);
+    }
+
     /// <inheritdoc cref="HtmlDiv.Div(Dictionary{string, string} ,Action)"/>
-    public void Div(Dictionary<string, string> attributes, Action innerContent) => divHelper.Div(attributes, innerContent);
-    
+    public void Div(Dictionary<string, string> attributes, Action innerContent)
+    {
+        EnsureRoot();
+        divHelper.Div(attributes, innerContent);
+    }
+
     /// <inheritdoc cref="HtmlDiv.Div(Action, Dictionary{string, string})"/>
-    public void Div(Action innerContent, Dictionary<string, string> attributes) => divHelper.Div(innerContent, attributes); 
+    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    {
+        EnsureRoot();
+        divHelper.Div(innerContent, attributes); 
+    }
     
     #endregion
     #region Span
-    
+
     /// <inheritdoc cref="HtmlSpan.Span(string)"/>
-    public void Span(string innerContent) => spanHelper.Span(innerContent);
-    
+    public void Span(string innerContent)
+    {
+        EnsureRoot();
+        spanHelper.Span(innerContent);
+    }
+
     /// <inheritdoc cref="HtmlSpan.Span(Action)"/>
-    public void Span(Action innerConent)  => spanHelper.Span(innerConent);
-    
+    public void Span(Action innerConent)
+    {
+        EnsureRoot();
+        spanHelper.Span(innerConent);
+    }
+
     /// <inheritdoc cref="HtmlSpan.Span(string, Dictionary{string, string})"/>
-    public void Span(string innerContent, Dictionary<string, string> attributes) => spanHelper.Span(innerContent, attributes);
-    
+    public void Span(string innerContent, Dictionary<string, string> attributes)
+    {
+        EnsureRoot();
+        spanHelper.Span(innerContent, attributes);
+    }
+
     /// <inheritdoc cref="HtmlSpan.Span(Action, Dictionary{string, string})"/>
-    public void Span(Action innerContent, Dictionary<string, string> attributes)  => spanHelper.Span(innerContent, attributes);
-    
+    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    {
+        EnsureRoot();
+        spanHelper.Span(innerContent, attributes);
+    }
+
     /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, string)"/>
-    public void Span(Dictionary<string, string> attributes, string innerContent) => spanHelper.Span(attributes, innerContent);
-    
+    public void Span(Dictionary<string, string> attributes, string innerContent)
+    {
+        EnsureRoot();
+        spanHelper.Span(attributes, innerContent);
+    }
+
     /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, Action)"/>
-    public void Span(Dictionary<string, string> attributes, Action innerContent) => spanHelper.Span(attributes, innerContent);
+    public void Span(Dictionary<string, string> attributes, Action innerContent)
+    {
+        EnsureRoot();
+        spanHelper.Span(attributes, innerContent);
+    }
     
     #endregion
     #region Html
