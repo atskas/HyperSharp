@@ -4,23 +4,44 @@ internal class HtmlCompiler
 {
     public string? OutputPath { get; set; } = null;
     public string? OutputFileName { get; set; } = null;
+    public string? UserCssPath { get; set; } = null;
     
-    public void Compile(string html)
-    {
-        // Get the user's documents folder
-        string outputParentPath = OutputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public void Compile(string html)
+        {
+            // Determine output folders
+            string outputParentPath = OutputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string outputDir = Path.Combine(outputParentPath, "HyperSharp_Output");
+            string cssOutputDir = Path.Combine(outputDir, "CSS");
 
-        // Subfolder inside of documents for output
-        string outputDir = Path.Combine(outputParentPath, "HyperSharp_Output");
+            Directory.CreateDirectory(outputDir);
+            Directory.CreateDirectory(cssOutputDir);
 
-        // Ensure the directory exists
-        Directory.CreateDirectory(outputDir);
+            string outputHtmlPath = Path.Combine(outputDir, OutputFileName ?? "output.html");
 
-        string outputPath = Path.Combine(outputDir, OutputFileName ?? "output.html");
+            // Copy CSS files if UserCssPath is specified
+            if (!string.IsNullOrEmpty(UserCssPath) && Directory.Exists(UserCssPath))
+            {
+                foreach (var cssFilePath in Directory.GetFiles(UserCssPath, "*.css"))
+                {
+                    string fileName = Path.GetFileName(cssFilePath);
+                    string destPath = Path.Combine(cssOutputDir, fileName);
 
-        Console.WriteLine($"Writing output to: {outputPath}");
+                    File.Copy(cssFilePath, destPath, overwrite: true);
+                    Console.WriteLine($"Copied CSS file: {fileName} to {destPath}");
+                }
+            }
+            else if (!string.IsNullOrEmpty(UserCssPath) && File.Exists(UserCssPath) && UserCssPath.EndsWith(".css", StringComparison.OrdinalIgnoreCase))
+            {
+                // If UserCssPath points directly to a CSS file, copy it directly
+                string fileName = Path.GetFileName(UserCssPath);
+                string destPath = Path.Combine(cssOutputDir, fileName);
+                File.Copy(UserCssPath, destPath, overwrite: true);
+                Console.WriteLine($"Copied CSS file: {fileName} to {destPath}");
+            }
 
-        File.WriteAllText(outputPath, html);
-    }
+            // Write the HTML output
+            File.WriteAllText(outputHtmlPath, html);
 
+            Console.WriteLine($"HTML output written to: {outputHtmlPath}");
+        }
 }

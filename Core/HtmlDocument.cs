@@ -203,6 +203,12 @@ public class HtmlDocument
     /// </summary>
     /// <param name="fileName"></param>
     public void SetFileName(string fileName) => compiler.OutputFileName = fileName;
+    
+    /// <summary>
+    /// User's CSS file path.
+    /// </summary>
+    /// <param name="path"></param>
+    public void SetUserCssPath(string path) => compiler.UserCssPath = path;
 
     /// <summary>
     /// Automatically wraps content in Html tag if it's not present.
