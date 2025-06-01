@@ -19,3 +19,5 @@ riderModule.iml
 
 # Testing
 Testing/
+Testing/**
+
