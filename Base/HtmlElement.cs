@@ -5,6 +5,15 @@ namespace HyperSharp.Elements;
 
 internal class HtmlElement
 {
+    // There's not that many self closing tags,
+    // so hardcoding this is perfectly fine.
+    private static readonly HashSet<string> SelfClosing = new HashSet<string>
+    {
+        "area", "base", "br", "col", "embed",
+        "hr", "img", "input", "link", "meta",
+        "param", "source", "track", "wbr"
+    };
+    
     public string Name { get; set; }
     public string? InnerText { get; set; }
     public List<HtmlElement> Children { get; set; } = new();
@@ -23,6 +32,11 @@ internal class HtmlElement
         var attrString = Attributes.Count > 0
             ? " " + string.Join(" ", Attributes.Select(a => $"{a.Key}=\"{a.Value}\""))
             : "";
+        
+        if (SelfClosing.Contains(Name))
+        {
+            return $"{indentation.Indent()}<{Name}{attrString}/>\n";
+        }
 
         if (Children.Count == 0 && string.IsNullOrEmpty(InnerText))
             return $"{indentation.Indent()}<{Name}{attrString}></{Name}>\n";
