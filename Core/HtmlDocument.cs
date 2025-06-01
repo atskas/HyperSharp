@@ -14,21 +14,23 @@ public class HtmlDocument
     internal readonly Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
     
     // Elements
-    private readonly HtmlDiv divHelper;
-    private readonly HtmlSpan spanHelper;
+    private readonly HtmlDiv htmlDiv;
+    private readonly HtmlSpan htmlSpan;
     private readonly HtmlHead htmlHead;
     private readonly HtmlBody htmlBody;
     private readonly HtmlLink htmlLink;
+    private readonly HtmlButton htmlButton;
 
     public HtmlDocument()
     {
         // Pass all elements to the document
-        divHelper = new HtmlDiv(ElementStack);
-        spanHelper = new HtmlSpan(ElementStack);
+        htmlDiv = new HtmlDiv(ElementStack);
+        htmlSpan = new HtmlSpan(ElementStack);
         root = new HtmlRoot(ElementStack);
         htmlHead = new HtmlHead(ElementStack);
         htmlBody = new HtmlBody(ElementStack);
         htmlLink = new HtmlLink(ElementStack);
+        htmlButton = new HtmlButton(ElementStack);
     }
     
     /// <summary>
@@ -43,21 +45,21 @@ public class HtmlDocument
     public void Div(Action innerContent)
     {
         EnsureRoot();
-        divHelper.Div(innerContent);
+        htmlDiv.Div(innerContent);
     }
 
     /// <inheritdoc cref="HtmlDiv.Div(Dictionary{string, string} ,Action)"/>
     public void Div(Dictionary<string, string> attributes, Action innerContent)
     {
         EnsureRoot();
-        divHelper.Div(attributes, innerContent);
+        htmlDiv.Div(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlDiv.Div(Action, Dictionary{string, string})"/>
     public void Div(Action innerContent, Dictionary<string, string> attributes)
     {
         EnsureRoot();
-        divHelper.Div(innerContent, attributes); 
+        htmlDiv.Div(innerContent, attributes); 
     }
     
     #endregion
@@ -67,42 +69,42 @@ public class HtmlDocument
     public void Span(string innerContent)
     {
         EnsureRoot();
-        spanHelper.Span(innerContent);
+        htmlSpan.Span(innerContent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Action)"/>
     public void Span(Action innerConent)
     {
         EnsureRoot();
-        spanHelper.Span(innerConent);
+        htmlSpan.Span(innerConent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(string, Dictionary{string, string})"/>
     public void Span(string innerContent, Dictionary<string, string> attributes)
     {
         EnsureRoot();
-        spanHelper.Span(innerContent, attributes);
+        htmlSpan.Span(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Action, Dictionary{string, string})"/>
     public void Span(Action innerContent, Dictionary<string, string> attributes)
     {
         EnsureRoot();
-        spanHelper.Span(innerContent, attributes);
+        htmlSpan.Span(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, string)"/>
     public void Span(Dictionary<string, string> attributes, string innerContent)
     {
         EnsureRoot();
-        spanHelper.Span(attributes, innerContent);
+        htmlSpan.Span(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, Action)"/>
     public void Span(Dictionary<string, string> attributes, Action innerContent)
     {
         EnsureRoot();
-        spanHelper.Span(attributes, innerContent);
+        htmlSpan.Span(attributes, innerContent);
     }
     
     #endregion
@@ -134,10 +136,56 @@ public class HtmlDocument
     #endregion
     #region Link
     
+    /// <inheritdoc cref="HtmlLink.Link(string, string)"/>
     public void Link(string rel, string href)
     {
         EnsureRoot();
         htmlLink.Link(rel, href);
+    }
+    
+    #endregion
+    #region Button
+
+    /// <inheritdoc cref="HtmlSpan.Span(string)"/>
+    public void Button(string innerContent)
+    {
+        EnsureRoot();
+        htmlButton.Button(innerContent);
+    }
+
+    /// <inheritdoc cref="HtmlButton.Button(Action)"/>
+    public void Button(Action innerConent)
+    {
+        EnsureRoot();
+        htmlButton.Button(innerConent);
+    }
+
+    /// <inheritdoc cref="HtmlButton.Button(string, Dictionary{string, string})"/>
+    public void Button(string innerContent, Dictionary<string, string> attributes)
+    {
+        EnsureRoot();
+        htmlButton.Button(innerContent, attributes);
+    }
+
+    /// <inheritdoc cref="HtmlButton.Button(Action, Dictionary{string, string})"/>
+    public void Button(Action innerContent, Dictionary<string, string> attributes)
+    {
+        EnsureRoot();
+        htmlButton.Button(innerContent, attributes);
+    }
+
+    /// <inheritdoc cref="HtmlButton.Button(Dictionary{string, string}, string)"/>
+    public void Button(Dictionary<string, string> attributes, string innerContent)
+    {
+        EnsureRoot();
+        htmlButton.Button(attributes, innerContent);
+    }
+
+    /// <inheritdoc cref="HtmlButton.Button(Dictionary{string, string}, Action)"/>
+    public void Button(Dictionary<string, string> attributes, Action innerContent)
+    {
+        EnsureRoot();
+        htmlButton.Button(attributes, innerContent);
     }
     
     #endregion
