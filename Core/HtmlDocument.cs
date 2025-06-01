@@ -18,6 +18,7 @@ public class HtmlDocument
     private readonly HtmlSpan spanHelper;
     private readonly HtmlHead htmlHead;
     private readonly HtmlBody htmlBody;
+    private readonly HtmlLink htmlLink;
 
     public HtmlDocument()
     {
@@ -27,6 +28,7 @@ public class HtmlDocument
         root = new HtmlRoot(ElementStack);
         htmlHead = new HtmlHead(ElementStack);
         htmlBody = new HtmlBody(ElementStack);
+        htmlLink = new HtmlLink(ElementStack);
     }
     
     /// <summary>
@@ -127,6 +129,15 @@ public class HtmlDocument
     {
         EnsureRoot();
         htmlBody.Body(innerContent);
+    }
+    
+    #endregion
+    #region Link
+    
+    public void Link(string rel, string href)
+    {
+        EnsureRoot();
+        htmlLink.Link(rel, href);
     }
     
     #endregion
