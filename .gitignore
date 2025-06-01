@@ -18,4 +18,6 @@ _ReSharper.Caches/
 riderModule.iml
 
 # Testing
-Testing/**/
+Testing/
+Testing/**
+
