@@ -16,3 +16,6 @@ _ReSharper.Caches/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries/
 riderModule.iml
+
+# Testing
+Testing/**/
