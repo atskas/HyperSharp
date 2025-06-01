@@ -20,6 +20,7 @@ public class HtmlDocument
     private readonly HtmlBody htmlBody;
     private readonly HtmlLink htmlLink;
     private readonly HtmlButton htmlButton;
+    private readonly HtmlTitle htmlTitle;
 
     public HtmlDocument()
     {
@@ -31,6 +32,7 @@ public class HtmlDocument
         htmlBody = new HtmlBody(ElementStack);
         htmlLink = new HtmlLink(ElementStack);
         htmlButton = new HtmlButton(ElementStack);
+        htmlTitle = new HtmlTitle(ElementStack);
     }
     
     /// <summary>
@@ -186,6 +188,16 @@ public class HtmlDocument
     {
         EnsureRoot();
         htmlButton.Button(attributes, innerContent);
+    }
+    
+    #endregion
+    #region Title
+    
+    /// <inheritdoc cref="HtmlTitle.Title(string)"/>
+    public void Title(string title)
+    {
+        EnsureRoot();
+        htmlTitle.Title(title);
     }
     
     #endregion
