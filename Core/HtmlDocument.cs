@@ -111,9 +111,9 @@ public class HtmlDocument
     
     #endregion
     #region Html
-    
+
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
-    public void Html(Action innerContent) => root?.Html(innerContent);
+    public void Html(Action innerContent) => root.Html(innerContent);
     
     #endregion
     #region Head
@@ -210,20 +210,13 @@ public class HtmlDocument
     public string GetHtml() => builder.ToString();
     
     /// <summary>
-    /// Compiles document to an html file.
+    /// Compiles document to a html file.
     /// </summary>
     /// <param name="output"></param>
     public void Compile()
     {
         builder.Clear(); // Clear previous content
         builder.Append("<!DOCTYPE html>\n");  // Add doctype at top
-
-        if (root == null || root.Children.Count <= 0 || ElementStack.Count == 0)
-        {
-            Console.WriteLine("Warning: Html() was not called.");
-            Console.WriteLine("Automatically wrapping content.");
-            root.Html(() => {});
-        }
         
         builder.Append(root.Build(indentation));
         // Write built HTML content to file with HtmlCompiler
@@ -275,9 +268,9 @@ public class HtmlDocument
     /// </summary>
     private void EnsureRoot()
     {
-        if (root.Children.Count == 0 && ElementStack.Count == 0)
+        if (root == null || root.Children.Count <= 0 || ElementStack.Count == 0)
         {
-            Console.WriteLine("Html() was not called.");
+            Console.WriteLine("Warning: Html() was not called.");
             Console.WriteLine("Automatically wrapping content.");
             root.Html(() => {});
             ElementStack.Push(root);
