@@ -268,7 +268,7 @@ public class HtmlDocument
     /// </summary>
     private void EnsureRoot()
     {
-        if (root == null || root.Children.Count <= 0 || ElementStack.Count == 0)
+        if (root == null || ElementStack.Count == 0)
         {
             Console.WriteLine("Warning: Html() was not called.");
             Console.WriteLine("Automatically wrapping content.");

@@ -16,7 +16,7 @@ internal class HtmlRoot : HtmlElement
     /// <param name="innerContent"></param>
     public void Html(Action innerContent)
     {
-        elementStack.Push(this);  // Push this instance, not a new one
+        elementStack.Push(this);
         innerContent();
         elementStack.Pop();
     }
