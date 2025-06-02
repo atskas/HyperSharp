@@ -20,6 +20,23 @@ internal class HtmlRoot : HtmlElement
         innerContent();
         elementStack.Pop();
     }
+    
+    /// <summary>
+    /// Root element of an HTML document.
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <param name="innerContent"></param>
+    public void Html(Dictionary<string, string> attributes, Action innerContent)
+    {
+        foreach (var attr in attributes)
+        {
+            Attributes[attr.Key] = attr.Value;
+        }
+        
+        elementStack.Push(this);
+        innerContent();
+        elementStack.Pop();
+    }
 
     /// <summary>
     /// Build HTML string from this root element.

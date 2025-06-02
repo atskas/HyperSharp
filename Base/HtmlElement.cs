@@ -24,6 +24,14 @@ internal class HtmlElement
         Name = name;
     }
     
+    public HtmlElement(string name, Dictionary<string, string>? attributes)
+    {
+        Name = name;
+        if (attributes != null)
+            foreach (var attr in attributes)
+                Attributes[attr.Key] = attr.Value;
+    }
+    
     public void AddChild(HtmlElement child) => Children.Add(child);
     public void SetAttribute(string name, string value) => Attributes[name] = value;
 

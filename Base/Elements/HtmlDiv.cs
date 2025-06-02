@@ -24,17 +24,15 @@ internal class HtmlDiv : HtmlElement
         innerContent();
         elementStack.Pop();
     }
-    
+
     /// <summary>
     /// Container element used to group other elements together.
     /// </summary>
-    /// <param name="innerContent"></param>
     /// <param name="attributes"></param>
-    public void Div(Dictionary<string, string> attributes ,Action innerContent)
+    /// <param name="innerContent"></param>
+    public void Div(AttributeBuilder attributes, Action innerContent)
     {
-        var div = new HtmlElement("div");
-        foreach(var attr in attributes)
-            div.SetAttribute(attr.Key, attr.Value);
+        var div = new HtmlElement("div", attributes.Attributes);
         
         elementStack.Peek().AddChild(div);
         
@@ -48,14 +46,12 @@ internal class HtmlDiv : HtmlElement
     /// </summary>
     /// <param name="innerContent"></param>
     /// <param name="attributes"></param>
-    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    public void Div(Action innerContent, AttributeBuilder attributes)
     {
-        var div = new HtmlElement("div");
-        foreach (var attr in attributes)
-            div.SetAttribute(attr.Key, attr.Value);
-
+        var div = new HtmlElement("div", attributes.Attributes);
+        
         elementStack.Peek().AddChild(div);
-
+        
         elementStack.Push(div);
         innerContent();
         elementStack.Pop();

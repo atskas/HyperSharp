@@ -50,15 +50,15 @@ public class HtmlDocument
         htmlDiv.Div(innerContent);
     }
 
-    /// <inheritdoc cref="HtmlDiv.Div(Dictionary{string, string} ,Action)"/>
-    public void Div(Dictionary<string, string> attributes, Action innerContent)
+    /// <inheritdoc cref="HtmlDiv.Div(AttributeBuilder attributes ,Action)"/>
+    public void Div(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
         htmlDiv.Div(attributes, innerContent);
     }
 
-    /// <inheritdoc cref="HtmlDiv.Div(Action, Dictionary{string, string})"/>
-    public void Div(Action innerContent, Dictionary<string, string> attributes)
+    /// <inheritdoc cref="HtmlDiv.Div(Action, AttributeBuilder attributes)"/>
+    public void Div(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
         htmlDiv.Div(innerContent, attributes); 
@@ -81,29 +81,29 @@ public class HtmlDocument
         htmlSpan.Span(innerConent);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(string, Dictionary{string, string})"/>
-    public void Span(string innerContent, Dictionary<string, string> attributes)
+    /// <inheritdoc cref="HtmlSpan.Span(string, AttributeBuilder attributes)"/>
+    public void Span(string innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
         htmlSpan.Span(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(Action, Dictionary{string, string})"/>
-    public void Span(Action innerContent, Dictionary<string, string> attributes)
+    /// <inheritdoc cref="HtmlSpan.Span(Action, AttributeBuilder attributes)"/>
+    public void Span(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
         htmlSpan.Span(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, string)"/>
-    public void Span(Dictionary<string, string> attributes, string innerContent)
+    /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, string)"/>
+    public void Span(AttributeBuilder attributes, string innerContent)
     {
         EnsureRoot();
         htmlSpan.Span(attributes, innerContent);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(Dictionary{string, string}, Action)"/>
-    public void Span(Dictionary<string, string> attributes, Action innerContent)
+    /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, Action)"/>
+    public void Span(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
         htmlSpan.Span(attributes, innerContent);
@@ -114,6 +114,9 @@ public class HtmlDocument
 
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
     public void Html(Action innerContent) => root.Html(innerContent);
+    
+    /// <inheritdoc cref="HtmlRoot.Html(Dictionary{string, string}, Action)"/>
+    public void Html(Dictionary<string, string> attributes, Action innerContent) => root.Html(attributes, innerContent);
     
     #endregion
     #region Head
@@ -162,29 +165,29 @@ public class HtmlDocument
         htmlButton.Button(innerConent);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(string, Dictionary{string, string})"/>
-    public void Button(string innerContent, Dictionary<string, string> attributes)
+    /// <inheritdoc cref="HtmlButton.Button(string, AttributeBuilder attributes)"/>
+    public void Button(string innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
         htmlButton.Button(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(Action, Dictionary{string, string})"/>
-    public void Button(Action innerContent, Dictionary<string, string> attributes)
+    /// <inheritdoc cref="HtmlButton.Button(Action, AttributeBuilder attributes)"/>
+    public void Button(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
         htmlButton.Button(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(Dictionary{string, string}, string)"/>
-    public void Button(Dictionary<string, string> attributes, string innerContent)
+    /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, string)"/>
+    public void Button(AttributeBuilder attributes, string innerContent)
     {
         EnsureRoot();
         htmlButton.Button(attributes, innerContent);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(Dictionary{string, string}, Action)"/>
-    public void Button(Dictionary<string, string> attributes, Action innerContent)
+    /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, Action)"/>
+    public void Button(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
         htmlButton.Button(attributes, innerContent);
@@ -212,7 +215,6 @@ public class HtmlDocument
     /// <summary>
     /// Compiles document to a html file.
     /// </summary>
-    /// <param name="output"></param>
     public void Compile()
     {
         builder.Clear(); // Clear previous content

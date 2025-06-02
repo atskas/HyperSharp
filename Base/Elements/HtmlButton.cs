@@ -39,12 +39,9 @@ internal class HtmlButton : HtmlElement
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Button(Dictionary<string, string> attributes ,Action innerContent)
+    public void Button(AttributeBuilder attributes ,Action innerContent)
     {
-        var span = new HtmlElement("button");
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
+        var span = new HtmlElement("button", attributes.Attributes);
         elementStack.Peek().AddChild(span);
         
         elementStack.Push(span);
@@ -57,12 +54,9 @@ internal class HtmlButton : HtmlElement
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Button(Dictionary<string, string> attributes ,string innerContent)
+    public void Button(AttributeBuilder attributes, string innerContent)
     {
-        var span = new HtmlElement("button") { InnerText = innerContent };
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
+        var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };
         elementStack.Peek().AddChild(span);
     }
     
@@ -71,12 +65,9 @@ internal class HtmlButton : HtmlElement
     /// </summary>
     /// <param name="innerContent"></param>
     /// <param name="attributes"></param>
-    public void Button(Action innerContent, Dictionary<string, string> attributes)
+    public void Button(Action innerContent, AttributeBuilder attributes)
     {
-        var span = new HtmlElement("button");
-        foreach (var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-
+        var span = new HtmlElement("button", attributes.Attributes);
         elementStack.Peek().AddChild(span);
 
         elementStack.Push(span);
@@ -89,12 +80,9 @@ internal class HtmlButton : HtmlElement
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Button(string innerContent, Dictionary<string, string> attributes)
+    public void Button(string innerContent, AttributeBuilder attributes)
     {
-        var span = new HtmlElement("button") { InnerText = innerContent };
-        foreach(var attr in attributes)
-            span.SetAttribute(attr.Key, attr.Value);
-        
+        var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };
         elementStack.Peek().AddChild(span);
     }
 }
