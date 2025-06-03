@@ -42,4 +42,31 @@ public class AttributeBuilder
         Attributes["lang"] = lang;
         return this;
     }
+
+    public AttributeBuilder Name(string name)
+    {
+        Attributes["name"] = name;
+        return this;
+    }
+
+    // Only to be used on "meta" tag
+    public AttributeBuilder Content(string content)
+    {
+        Attributes["content"] = content;
+        return this;
+    }
+
+    // Only to be used on "meta" tag
+    public AttributeBuilder Charset(string charset)
+    {
+        Attributes["charset"] = charset;
+        return this;
+    }
+
+    // Only to be used on "meta" tag
+    public AttributeBuilder HttpEquiv(string httpEquiv)
+    {
+        Attributes["http-equiv"] = httpEquiv;
+        return this;
+    }
 }
