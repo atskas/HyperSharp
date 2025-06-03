@@ -26,11 +26,11 @@ internal class HtmlRoot : HtmlElement
     /// </summary>
     /// <param name="attributes"></param>
     /// <param name="innerContent"></param>
-    public void Html(Dictionary<string, string> attributes, Action innerContent)
+    public void Html(AttributeBuilder attributes, Action innerContent)
     {
-        foreach (var attr in attributes)
+        foreach (var attr in attributes.Attributes)
         {
-            Attributes[attr.Key] = attr.Value;
+            this.Attributes[attr.Key] = attr.Value;
         }
         
         elementStack.Push(this);

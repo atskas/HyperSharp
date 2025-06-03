@@ -115,8 +115,8 @@ public class HtmlDocument
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
     public void Html(Action innerContent) => root.Html(innerContent);
     
-    /// <inheritdoc cref="HtmlRoot.Html(Dictionary{string, string}, Action)"/>
-    public void Html(Dictionary<string, string> attributes, Action innerContent) => root.Html(attributes, innerContent);
+    /// <inheritdoc cref="HtmlRoot.Html(AttributeBuilder attributes, Action)"/>
+    public void Html(AttributeBuilder attributes, Action innerContent) => root.Html(attributes, innerContent);
     
     #endregion
     #region Head
@@ -245,6 +245,13 @@ public class HtmlDocument
     /// <param name="style"></param>
     /// <returns></returns>
     public AttributeBuilder Style(string style) => new AttributeBuilder().Style(style);
+    
+    /// <summary>
+    /// Specifies the primary language of the element's content.
+    /// </summary>
+    /// <param name="lang"></param>
+    /// <returns></returns>
+    public AttributeBuilder Lang(string lang) => new AttributeBuilder().Lang(lang);
     
     /// <summary>
     /// Sets file output path.

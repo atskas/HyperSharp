@@ -36,4 +36,10 @@ public class AttributeBuilder
         }
         return this;
     }
+
+    public AttributeBuilder Lang(string lang)
+    {
+        Attributes["lang"] = lang;
+        return this;
+    }
 }
