@@ -1,4 +1,4 @@
-using HyperSharp.Elements;
+using HyperSharp.Elements.Base;
 using HyperSharp.Utils;
 
 internal class HtmlRoot : HtmlElement

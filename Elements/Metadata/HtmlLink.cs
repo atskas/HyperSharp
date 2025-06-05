@@ -1,6 +1,6 @@
 using HyperSharp.Core;
 
-namespace HyperSharp.Elements.Elements;
+namespace HyperSharp.Elements.Base.Elements;
 
 internal class HtmlLink : HtmlElement
 {
@@ -13,6 +13,7 @@ internal class HtmlLink : HtmlElement
     
     /// <summary>
     /// Connects an external CSS file to the HTML document.
+    /// Typically placed inside the 'Head' element.
     /// </summary>
     /// <param name="rel"></param>
     /// <param name="filePath"></param>

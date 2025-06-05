@@ -1,11 +1,11 @@
 using System.Text;
 using HyperSharp.Utils;
 
-namespace HyperSharp.Elements;
+namespace HyperSharp.Elements.Base;
 
 internal class HtmlElement
 {
-    // There's not that many self closing tags,
+    // There's not that many self-closing tags,
     // so hardcoding this is perfectly fine.
     private static readonly HashSet<string> SelfClosing = new HashSet<string>
     {

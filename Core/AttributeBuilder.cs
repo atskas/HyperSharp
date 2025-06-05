@@ -1,4 +1,4 @@
-namespace HyperSharp.Elements;
+namespace HyperSharp.Elements.Base;
 
 public class AttributeBuilder
 {

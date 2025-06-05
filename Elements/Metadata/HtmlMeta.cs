@@ -1,6 +1,6 @@
 using HyperSharp.Core;
 
-namespace HyperSharp.Elements.Elements;
+namespace HyperSharp.Elements.Base.Elements;
 
 internal class HtmlMeta : HtmlElement
 {
