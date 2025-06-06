@@ -18,6 +18,7 @@ internal class HtmlElement
     public string? InnerText { get; set; }
     public List<HtmlElement> Children { get; set; } = new();
     public Dictionary<string, string> Attributes { get; set; } = new();
+    
 
     public HtmlElement(string name)
     {

@@ -15,6 +15,9 @@ public class ElementInit
     internal readonly HtmlButton htmlButton;
     internal readonly HtmlTitle htmlTitle;
     internal readonly HtmlMeta htmlMeta;
+    internal readonly HtmlIFrame htmlIFrame;
+    internal readonly HtmlVideo htmlVideo;
+    internal readonly HtmlSource htmlSource;
     internal HtmlRoot root;
 
     public ElementInit()
@@ -29,6 +32,9 @@ public class ElementInit
         htmlButton = new HtmlButton(ElementStack);
         htmlTitle = new HtmlTitle(ElementStack);
         htmlMeta = new HtmlMeta(ElementStack);
+        htmlIFrame = new HtmlIFrame(ElementStack);
+        htmlVideo = new HtmlVideo(ElementStack);
+        htmlSource = new HtmlSource(ElementStack);
     }
 
 }

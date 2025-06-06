@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using HyperSharp.Elements.Base;
 using HyperSharp.Elements.Base.Elements;
 using HyperSharp.Utils;
@@ -6,17 +7,18 @@ namespace HyperSharp.Core;
 
 public class HtmlDocument
 {
-    private HtmlBuilder builder = new HtmlBuilder();
-    private HtmlCompiler compiler = new HtmlCompiler();
-    private IndentationHelper indentation = new IndentationHelper();
-    private ElementInit Elements = new ElementInit();
-    
+    private HtmlBuilder builder = new();
+    private HtmlCompiler compiler = new();
+    private IndentationHelper indentation = new();
+    private ElementInit Elements = new();
+
     /// <summary>
     /// Declares HTML5, should be the very first line.
     /// </summary>
     public void Doctype() => builder.Append("<!DOCTYPE html>\n");
-    
+
     #region Forwarded element calls
+
     #region Div
 
     /// <inheritdoc cref="HtmlDiv.Div(Action)"/>
@@ -37,10 +39,11 @@ public class HtmlDocument
     public void Div(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        Elements.htmlDiv.Div(innerContent, attributes); 
+        Elements.htmlDiv.Div(innerContent, attributes);
     }
-    
+
     #endregion
+
     #region Span
 
     /// <inheritdoc cref="HtmlSpan.Span(string)"/>
@@ -84,17 +87,19 @@ public class HtmlDocument
         EnsureRoot();
         Elements.htmlSpan.Span(attributes, innerContent);
     }
-    
+
     #endregion
+
     #region Html
 
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
     public void Html(Action innerContent) => Elements.root.Html(innerContent);
-    
+
     /// <inheritdoc cref="HtmlRoot.Html(AttributeBuilder attributes, Action)"/>
     public void Html(AttributeBuilder attributes, Action innerContent) => Elements.root.Html(attributes, innerContent);
-    
+
     #endregion
+
     #region Head
 
     /// <inheritdoc cref="HtmlHead.Head(Action)"/>
@@ -103,8 +108,9 @@ public class HtmlDocument
         EnsureRoot();
         Elements.htmlHead.Head(innerContent);
     }
-    
+
     #endregion
+
     #region Body
 
     /// <inheritdoc cref="HtmlBody.Body(Action)"/>
@@ -113,18 +119,20 @@ public class HtmlDocument
         EnsureRoot();
         Elements.htmlBody.Body(innerContent);
     }
-    
+
     #endregion
+
     #region Link
-    
+
     /// <inheritdoc cref="HtmlLink.Link(string, string)"/>
     public void Link(string rel, string href)
     {
         EnsureRoot();
         Elements.htmlLink.Link(rel, href);
     }
-    
+
     #endregion
+
     #region Button
 
     /// <inheritdoc cref="HtmlSpan.Span(string)"/>
@@ -168,18 +176,20 @@ public class HtmlDocument
         EnsureRoot();
         Elements.htmlButton.Button(attributes, innerContent);
     }
-    
+
     #endregion
+
     #region Title
-    
+
     /// <inheritdoc cref="HtmlTitle.Title(string)"/>
     public void Title(string title)
     {
         EnsureRoot();
         Elements.htmlTitle.Title(title);
     }
-    
+
     #endregion
+
     #region Meta
 
     /// <inheritdoc cref="HtmlMeta.Meta(AttributeBuilder attributes)"/>
@@ -188,6 +198,59 @@ public class HtmlDocument
         EnsureRoot();
         Elements.htmlMeta.Meta(attributes);
     }
+
+    #endregion
+
+    #region IFrame
+
+
+    /// <inheritdoc cref="HtmlIFrame.IFrame(AttributeBuilder attributes)"/>
+    public void IFrame(AttributeBuilder attributes)
+    {
+        EnsureRoot();
+        Elements.htmlIFrame.IFrame(attributes);
+    }
+
+    #endregion
+
+    #region Video
+
+    /// <inheritdoc cref="HtmlVideo.Video(AttributeBuilder attributes)"/>
+    public void Video(AttributeBuilder attributes)
+    {
+        EnsureRoot();
+        Elements.htmlVideo.Video(attributes);
+    }
+
+    /// <inheritdoc cref="HtmlVideo.Video(Action innerContent, AttributeBuilder attributes)"/>
+    public void Video(Action innerContent, AttributeBuilder attributes)
+    {
+        EnsureRoot();
+        Elements.htmlVideo.Video(innerContent, attributes);
+    }
+    
+    /// <inheritdoc cref="HtmlVideo.Video(AttributeBuilder attributes, Action innerContent)"/>
+    public void Video(AttributeBuilder attributes, Action innerContent)
+    {
+        EnsureRoot();
+        Elements.htmlVideo.Video(attributes, innerContent);
+    }
+
+    /// <inheritdoc cref="HtmlVideo.Video(Action innerContent)"/>
+    public void Video(Action innerContent)
+    {
+        EnsureRoot();
+        Elements.htmlVideo.Video(innerContent);
+    }
+
+    #endregion
+    #region Source
+
+    public void Source(AttributeBuilder source)
+    {
+        EnsureRoot();
+        Elements.htmlSource.Source(source);
+    } 
     
     #endregion
     #endregion
@@ -214,7 +277,7 @@ public class HtmlDocument
     /// <param name="style"></param>
     /// <returns></returns>
     public AttributeBuilder Style(string style) => new AttributeBuilder().Style(style);
-    
+
     /// <summary>
     /// Specifies the primary language of the element's content.
     /// </summary>
@@ -249,6 +312,21 @@ public class HtmlDocument
     /// <param name="httpEquiv"></param>
     /// <returns></returns>
     public AttributeBuilder HttpEquiv(string httpEquiv) => new AttributeBuilder().HttpEquiv(httpEquiv);
+
+    public AttributeBuilder Src(string src) => new AttributeBuilder().Src(src);
+
+    public AttributeBuilder Width(string width) => new AttributeBuilder().Width(width);
+
+    public AttributeBuilder Height(string height) => new AttributeBuilder().Height(height);
+
+    /// <summary>
+    /// Custom attribute setter.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public AttributeBuilder Set(string key, string value) => new AttributeBuilder().Set(key, value);
+    public AttributeBuilder Set(string key) => new AttributeBuilder().Set(key);
     
     #endregion
     
