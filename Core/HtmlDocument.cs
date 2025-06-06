@@ -326,8 +326,8 @@ public class HtmlDocument
     /// <param name="value"></param>
     /// <returns></returns>
     public AttributeBuilder Set(string key, string value) => new AttributeBuilder().Set(key, value);
-    public AttributeBuilder Set(string key) => new AttributeBuilder().Set(key);
-    
+
+    public AttributeBuilder SetBoolean(string key) => new AttributeBuilder().SetBoolean(key);
     #endregion
     
     #region Compilation and Configuration

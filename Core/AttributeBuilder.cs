@@ -21,11 +21,9 @@ public class AttributeBuilder
         return this;
     }
 
-    public AttributeBuilder Set(string key)
+    public AttributeBuilder SetBoolean(string key)
     {
-        Attributes[key] = key;
-        return this;
-
+        Attributes[key] = null;
         return this;
     }
     

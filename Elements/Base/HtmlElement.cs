@@ -39,7 +39,8 @@ internal class HtmlElement
     public string Build(IndentationHelper indentation)
     {
         var attrString = Attributes.Count > 0
-            ? " " + string.Join(" ", Attributes.Select(a => $"{a.Key}=\"{a.Value}\""))
+            ? " " + string.Join(" ", Attributes.Select(a =>
+                a.Value == null ? a.Key : $"{a.Key}=\"{a.Value}\""))
             : "";
         
         if (SelfClosing.Contains(Name))
