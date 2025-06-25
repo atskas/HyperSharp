@@ -244,6 +244,7 @@ public class HtmlDocument
     }
 
     #endregion
+    
     #region Source
 
     public void Source(AttributeBuilder source)
@@ -344,7 +345,7 @@ public class HtmlDocument
     public void Compile()
     {
         builder.Clear(); // Clear previous content
-        builder.Append("<!DOCTYPE html>\n");  // Add doctype at top
+        Doctype();  // Add doctype at top
         
         builder.Append(Elements.root.Build(indentation));
         // Write built HTML content to file with HtmlCompiler
