@@ -20,7 +20,10 @@ public class ElementInit
     internal readonly HtmlSource HtmlSource;
     internal HtmlRoot Root;
 
-    public ElementInit()
+    /// <summary>
+    /// Initialise elements
+    /// </summary>
+    internal ElementInit()
     {
         // Pass all elements to the document
         HtmlDiv = new HtmlDiv(ElementStack);
