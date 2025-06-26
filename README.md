@@ -18,3 +18,6 @@ Clone the repository:
 git clone https://github.com/atskas/HyperSharp
 cd HyperSharp
 dotnet build
+```
+
+> Developer note: At the moment, this project is not a library. However, it soon will be. It is currently an executable project for easier testing reasons, if you wish to use it, you can simply make a main functions then you can call everything you need.
