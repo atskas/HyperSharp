@@ -16,7 +16,7 @@ You can customize the output by setting the following properties:
 
 - **`OutputFileName`** — Name of the generated HTML file (default: e.g., `output.html`)  
 - **`OutputPath`** — Directory where the output file is saved (default: `Documents/HyperSharp_Output`)  
-- **`UserCssPath`** — Optional path to a custom CSS file to style the generated HTML
+- **`UserCssPath`** — Optional path to a custom CSS file or a directory holding CSS files to style the generated HTML
 
 If you don't specify these, HyperSharp will save the output to your system's `Documents/HyperSharp_Output` folder by default.
 
