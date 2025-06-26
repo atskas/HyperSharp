@@ -7,34 +7,34 @@ public class ElementInit
 {
     internal readonly Stack<HtmlElement> ElementStack = new Stack<HtmlElement>();
     
-    internal readonly HtmlDiv htmlDiv;
-    internal readonly HtmlSpan htmlSpan;
-    internal readonly HtmlHead htmlHead;
-    internal readonly HtmlBody htmlBody;
-    internal readonly HtmlLink htmlLink;
-    internal readonly HtmlButton htmlButton;
-    internal readonly HtmlTitle htmlTitle;
-    internal readonly HtmlMeta htmlMeta;
-    internal readonly HtmlIFrame htmlIFrame;
-    internal readonly HtmlVideo htmlVideo;
-    internal readonly HtmlSource htmlSource;
-    internal HtmlRoot root;
+    internal readonly HtmlDiv HtmlDiv;
+    internal readonly HtmlSpan HtmlSpan;
+    internal readonly HtmlHead HtmlHead;
+    internal readonly HtmlBody HtmlBody;
+    internal readonly HtmlLink HtmlLink;
+    internal readonly HtmlButton HtmlButton;
+    internal readonly HtmlTitle HtmlTitle;
+    internal readonly HtmlMeta HtmlMeta;
+    internal readonly HtmlIFrame HtmlIFrame;
+    internal readonly HtmlVideo HtmlVideo;
+    internal readonly HtmlSource HtmlSource;
+    internal HtmlRoot Root;
 
     public ElementInit()
     {
         // Pass all elements to the document
-        htmlDiv = new HtmlDiv(ElementStack);
-        htmlSpan = new HtmlSpan(ElementStack);
-        root = new HtmlRoot(ElementStack);
-        htmlHead = new HtmlHead(ElementStack);
-        htmlBody = new HtmlBody(ElementStack);
-        htmlLink = new HtmlLink(ElementStack);
-        htmlButton = new HtmlButton(ElementStack);
-        htmlTitle = new HtmlTitle(ElementStack);
-        htmlMeta = new HtmlMeta(ElementStack);
-        htmlIFrame = new HtmlIFrame(ElementStack);
-        htmlVideo = new HtmlVideo(ElementStack);
-        htmlSource = new HtmlSource(ElementStack);
+        HtmlDiv = new HtmlDiv(ElementStack);
+        HtmlSpan = new HtmlSpan(ElementStack);
+        Root = new HtmlRoot(ElementStack);
+        HtmlHead = new HtmlHead(ElementStack);
+        HtmlBody = new HtmlBody(ElementStack);
+        HtmlLink = new HtmlLink(ElementStack);
+        HtmlButton = new HtmlButton(ElementStack);
+        HtmlTitle = new HtmlTitle(ElementStack);
+        HtmlMeta = new HtmlMeta(ElementStack);
+        HtmlIFrame = new HtmlIFrame(ElementStack);
+        HtmlVideo = new HtmlVideo(ElementStack);
+        HtmlSource = new HtmlSource(ElementStack);
     }
 
 }

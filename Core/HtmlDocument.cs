@@ -30,21 +30,21 @@ public class HtmlDocument
     public void Div(Action innerContent)
     {
         EnsureRoot();
-        elements.htmlDiv.Div(innerContent);
+        elements.HtmlDiv.Div(innerContent);
     }
 
     /// <inheritdoc cref="HtmlDiv.Div(AttributeBuilder attributes ,Action)"/>
     public void Div(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
-        elements.htmlDiv.Div(attributes, innerContent);
+        elements.HtmlDiv.Div(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlDiv.Div(Action, AttributeBuilder attributes)"/>
     public void Div(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlDiv.Div(innerContent, attributes);
+        elements.HtmlDiv.Div(innerContent, attributes);
     }
 
     #endregion
@@ -55,42 +55,42 @@ public class HtmlDocument
     public void Span(string innerContent)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(innerContent);
+        elements.HtmlSpan.Span(innerContent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Action)"/>
     public void Span(Action innerConent)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(innerConent);
+        elements.HtmlSpan.Span(innerConent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(string, AttributeBuilder attributes)"/>
     public void Span(string innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(innerContent, attributes);
+        elements.HtmlSpan.Span(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(Action, AttributeBuilder attributes)"/>
     public void Span(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(innerContent, attributes);
+        elements.HtmlSpan.Span(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, string)"/>
     public void Span(AttributeBuilder attributes, string innerContent)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(attributes, innerContent);
+        elements.HtmlSpan.Span(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, Action)"/>
     public void Span(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
-        elements.htmlSpan.Span(attributes, innerContent);
+        elements.HtmlSpan.Span(attributes, innerContent);
     }
 
     #endregion
@@ -98,10 +98,10 @@ public class HtmlDocument
     #region Html
 
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
-    public void Html(Action innerContent) => elements.root.Html(innerContent);
+    public void Html(Action innerContent) => elements.Root.Html(innerContent);
 
     /// <inheritdoc cref="HtmlRoot.Html(AttributeBuilder attributes, Action)"/>
-    public void Html(AttributeBuilder attributes, Action innerContent) => elements.root.Html(attributes, innerContent);
+    public void Html(AttributeBuilder attributes, Action innerContent) => elements.Root.Html(attributes, innerContent);
 
     #endregion
 
@@ -111,7 +111,7 @@ public class HtmlDocument
     public void Head(Action innerContent)
     {
         EnsureRoot();
-        elements.htmlHead.Head(innerContent);
+        elements.HtmlHead.Head(innerContent);
     }
 
     #endregion
@@ -122,7 +122,7 @@ public class HtmlDocument
     public void Body(Action innerContent)
     {
         EnsureRoot();
-        elements.htmlBody.Body(innerContent);
+        elements.HtmlBody.Body(innerContent);
     }
 
     #endregion
@@ -133,7 +133,7 @@ public class HtmlDocument
     public void Link(string rel, string href)
     {
         EnsureRoot();
-        elements.htmlLink.Link(rel, href);
+        elements.HtmlLink.Link(rel, href);
     }
 
     #endregion
@@ -144,42 +144,42 @@ public class HtmlDocument
     public void Button(string innerContent)
     {
         EnsureRoot();
-        elements.htmlButton.Button(innerContent);
+        elements.HtmlButton.Button(innerContent);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(Action)"/>
     public void Button(Action innerConent)
     {
         EnsureRoot();
-        elements.htmlButton.Button(innerConent);
+        elements.HtmlButton.Button(innerConent);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(string, AttributeBuilder attributes)"/>
     public void Button(string innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlButton.Button(innerContent, attributes);
+        elements.HtmlButton.Button(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(Action, AttributeBuilder attributes)"/>
     public void Button(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlButton.Button(innerContent, attributes);
+        elements.HtmlButton.Button(innerContent, attributes);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, string)"/>
     public void Button(AttributeBuilder attributes, string innerContent)
     {
         EnsureRoot();
-        elements.htmlButton.Button(attributes, innerContent);
+        elements.HtmlButton.Button(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, Action)"/>
     public void Button(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
-        elements.htmlButton.Button(attributes, innerContent);
+        elements.HtmlButton.Button(attributes, innerContent);
     }
 
     #endregion
@@ -190,7 +190,7 @@ public class HtmlDocument
     public void Title(string title)
     {
         EnsureRoot();
-        elements.htmlTitle.Title(title);
+        elements.HtmlTitle.Title(title);
     }
 
     #endregion
@@ -201,7 +201,7 @@ public class HtmlDocument
     public void Meta(AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlMeta.Meta(attributes);
+        elements.HtmlMeta.Meta(attributes);
     }
 
     #endregion
@@ -213,7 +213,7 @@ public class HtmlDocument
     public void IFrame(AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlIFrame.IFrame(attributes);
+        elements.HtmlIFrame.IFrame(attributes);
     }
 
     #endregion
@@ -224,28 +224,28 @@ public class HtmlDocument
     public void Video(AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlVideo.Video(attributes);
+        elements.HtmlVideo.Video(attributes);
     }
 
     /// <inheritdoc cref="HtmlVideo.Video(Action innerContent, AttributeBuilder attributes)"/>
     public void Video(Action innerContent, AttributeBuilder attributes)
     {
         EnsureRoot();
-        elements.htmlVideo.Video(innerContent, attributes);
+        elements.HtmlVideo.Video(innerContent, attributes);
     }
     
     /// <inheritdoc cref="HtmlVideo.Video(AttributeBuilder attributes, Action innerContent)"/>
     public void Video(AttributeBuilder attributes, Action innerContent)
     {
         EnsureRoot();
-        elements.htmlVideo.Video(attributes, innerContent);
+        elements.HtmlVideo.Video(attributes, innerContent);
     }
 
     /// <inheritdoc cref="HtmlVideo.Video(Action innerContent)"/>
     public void Video(Action innerContent)
     {
         EnsureRoot();
-        elements.htmlVideo.Video(innerContent);
+        elements.HtmlVideo.Video(innerContent);
     }
 
     #endregion
@@ -255,7 +255,7 @@ public class HtmlDocument
     public void Source(AttributeBuilder source)
     {
         EnsureRoot();
-        elements.htmlSource.Source(source);
+        elements.HtmlSource.Source(source);
     } 
     
     #endregion
@@ -277,7 +277,7 @@ public class HtmlDocument
         builder.Clear(); // Clear previous content
         Doctype();  // Add doctype at top
         
-        builder.Append(elements.root.Build(indentation));
+        builder.Append(elements.Root.Build(indentation));
         // Write built HTML content to file with HtmlCompiler
         compiler.Compile(builder.ToString());
     }
@@ -306,12 +306,12 @@ public class HtmlDocument
     /// </summary>
     private void EnsureRoot()
     {
-        if (elements.root == null || elements.ElementStack.Count == 0)
+        if (elements.Root == null || elements.ElementStack.Count == 0)
         {
             Console.WriteLine("Warning: Html() was not called.");
             Console.WriteLine("Automatically wrapping content.");
-            elements.root.Html(() => {});
-            elements.ElementStack.Push(elements.root);
+            elements.Root.Html(() => {});
+            elements.ElementStack.Push(elements.Root);
         }
     }
     
