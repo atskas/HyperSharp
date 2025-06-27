@@ -1,5 +1,5 @@
 # HyperSharp
-![Logo](Images/logo.png)
+<img src="Images/logo.png" alt="Logo" width="150"/>
 
 ![License](https://img.shields.io/github/license/atskas/HyperSharp?cacheSeconds=60)
 ![Status](https://img.shields.io/badge/status-in--development-yellow)
