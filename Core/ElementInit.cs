@@ -18,6 +18,7 @@ public class ElementInit
     internal readonly HtmlIFrame HtmlIFrame;
     internal readonly HtmlVideo HtmlVideo;
     internal readonly HtmlSource HtmlSource;
+    internal readonly HtmlHeading HtmlHeading;
     internal HtmlRoot Root;
 
     /// <summary>
@@ -38,6 +39,7 @@ public class ElementInit
         HtmlIFrame = new HtmlIFrame(ElementStack);
         HtmlVideo = new HtmlVideo(ElementStack);
         HtmlSource = new HtmlSource(ElementStack);
+        HtmlHeading = new HtmlHeading(ElementStack);
     }
 
 }

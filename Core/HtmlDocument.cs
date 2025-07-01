@@ -259,6 +259,39 @@ public class HtmlDocument
     } 
     
     #endregion
+    
+    #region Heading
+
+    /// <inheritdoc cref="HtmlHeading.Heading(string, int)"/>
+    public void Heading(string innerContent, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(innerContent, level);
+    }
+
+    /// <inheritdoc cref="HtmlHeading.Heading(Action, int)"/>
+    public void Heading(Action innerContent, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(innerContent, level);
+    }
+
+    /// <inheritdoc cref="HtmlHeading.Heading(AttributeBuilder, Action, int)"/>
+    public void Heading(AttributeBuilder attributes, Action innerContent, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(attributes, innerContent, level);
+    }
+
+    /// <inheritdoc cref="HtmlHeading.Heading(Action, AttributeBuilder, int)"/>
+    public void Heading(Action innerContent, AttributeBuilder attributes, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(innerContent, attributes, level);
+    }
+
+    #endregion
+
     #endregion
     
     #region Compilation and Configuration
