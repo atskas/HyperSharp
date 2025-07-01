@@ -12,6 +12,15 @@
 ### Requirements
 - .NET 6.0 or later
 
+### Usage
+
+To start working with HyperSharp, create a new ``HtmlDocument``:
+```cs
+private HtmlDocument Document = new();
+```
+You can then use its methods to define HTML structure and elements programmatically.
+
+
 ### Configuration
 
 You can customize the output by setting the following properties:
@@ -21,7 +30,6 @@ You can customize the output by setting the following properties:
 - **`UserCssPath`** — Optional path to a custom CSS file or a directory holding CSS files to style the generated HTML
 
 If you don't specify these, HyperSharp will save the output to your system's `Documents/HyperSharp_Output` folder by default.
-
 
 ### Installation
 
@@ -33,7 +41,11 @@ cd HyperSharp
 dotnet build
 ```
 
-> **Developer note:**  
-> Currently, HyperSharp is an executable project to simplify testing and development. It is **not yet a library**, but will be converted into one soon.  
->   
-> Meanwhile, if you want to use its functionality, you can create your own `Main` method and call the necessary functions directly from the code.
+> **Developer Note:**  
+> HyperSharp is under **active development**. It’s functional, but not yet a complete library.
+>  
+> Currently, it runs as an executable project for easier testing. It will be converted into a standalone library soon.  
+>  
+> In the meantime, you can use its features by creating your own `Main` method and calling HyperSharp classes directly.  
+>  
+>  [See CONTRIBUTING.md](CONTRIBUTING.md) if you’d like to help out!
