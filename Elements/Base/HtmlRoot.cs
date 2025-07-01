@@ -43,7 +43,7 @@ internal class HtmlRoot : HtmlElement
     /// </summary>
     /// <param name="indent"></param>
     /// <returns></returns>
-    public string Build(IndentationHelper indent)
+    internal string Build(IndentationHelper indent)
     {
         return base.Build(indent); // Use HtmlElement.Build from base
     }
