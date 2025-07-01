@@ -14,7 +14,7 @@ internal class HtmlDiv : HtmlElement
     /// <summary>
     /// Container element used to group other elements together.
     /// </summary>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Div(Action innerContent)
     {
         var div = new HtmlElement("div");
@@ -28,8 +28,8 @@ internal class HtmlDiv : HtmlElement
     /// <summary>
     /// Container element used to group other elements together.
     /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
+    /// <param name="attributes">Attributes to add to the element.</param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Div(AttributeBuilder attributes, Action innerContent)
     {
         var div = new HtmlElement("div", attributes.Attributes);
@@ -44,8 +44,8 @@ internal class HtmlDiv : HtmlElement
     /// <summary>
     /// Container element used to group other elements together.
     /// </summary>
-    /// <param name="innerContent"></param>
-    /// <param name="attributes"></param>
+    /// <param name="innerContent">The content of the element.</param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     public void Div(Action innerContent, AttributeBuilder attributes)
     {
         var div = new HtmlElement("div", attributes.Attributes);

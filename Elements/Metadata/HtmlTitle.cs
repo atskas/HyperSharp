@@ -13,8 +13,9 @@ internal class HtmlTitle : HtmlElement
     
     /// <summary>
     /// Defines the page’s title shown in the browser tab.
+    /// Typically placed inside the 'Head' element.
     /// </summary>
-    /// <param name="title"></param>
+    /// <param name="title">The text content for the page title.</param>
     public void Title(string title)
     {
         var head = new HtmlElement("title") {InnerText = title};

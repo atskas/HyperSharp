@@ -14,7 +14,7 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The text content of the element.</param>
     public void Button(string innerContent)
     {
         var span = new HtmlElement("button") { InnerText = innerContent };
@@ -24,6 +24,7 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
+    /// <param name="innerContent">The content of the element.</param>
     public void Button(Action innerContent)
     {
         var span  = new HtmlElement("button");
@@ -37,9 +38,9 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
-    public void Button(AttributeBuilder attributes ,Action innerContent)
+    /// <param name="attributes">Attributes to add to the element.</param>
+    /// <param name="innerContent">The content of the element.</param>
+    public void Button(AttributeBuilder attributes, Action innerContent)
     {
         var span = new HtmlElement("button", attributes.Attributes);
         elementStack.Peek().AddChild(span);
@@ -52,8 +53,8 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
+    /// <param name="attributes">Attributes to add to the element.</param>
+    /// <param name="innerContent">The text content of the element.</param>
     public void Button(AttributeBuilder attributes, string innerContent)
     {
         var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };
@@ -63,8 +64,8 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="innerContent"></param>
-    /// <param name="attributes"></param>
+    /// <param name="innerContent">The content of the element.</param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     public void Button(Action innerContent, AttributeBuilder attributes)
     {
         var span = new HtmlElement("button", attributes.Attributes);
@@ -78,8 +79,8 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The text content of the element.</param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     public void Button(string innerContent, AttributeBuilder attributes)
     {
         var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };

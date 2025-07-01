@@ -51,7 +51,7 @@ internal class HtmlHeading : HtmlElement
     /// Represents a section title or heading in a document with custom attributes.
     /// Headings range from level 1 (most important) to level 6 (least important).
     /// </summary>
-    /// <param name="attributes">Attributes to add to the heading element (e.g., class, id).</param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="innerContent">The content of the heading.</param>
     /// <param name="level">The level of the heading (1 to 6).</param>
     public void Heading(AttributeBuilder attributes, Action innerContent, int level)
@@ -71,7 +71,7 @@ internal class HtmlHeading : HtmlElement
     /// Headings range from level 1 (most important) to level 6 (least important).
     /// </summary>
     /// <param name="innerContent">The content of the heading.</param>
-    /// <param name="attributes">Attributes to add to the heading element (e.g., class, id).</param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="level">The level of the heading (1 to 6).</param>
     public void Heading(Action innerContent, AttributeBuilder attributes, int level)
     {

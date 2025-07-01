@@ -14,7 +14,7 @@ internal class HtmlBody : HtmlElement
     /// <summary>
     /// Contains the visible content of the webpage.
     /// </summary>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Body(Action innerContent)
     {
         var body = new HtmlElement("body");

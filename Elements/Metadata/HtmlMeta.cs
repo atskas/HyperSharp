@@ -15,7 +15,7 @@ internal class HtmlMeta : HtmlElement
     /// Represents metadata about the HTML document, such as character encoding,
     /// Typically placed inside the 'Head' element.
     /// </summary>
-    /// <param name="attributes"></param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     public void Meta(AttributeBuilder attributes)
     {
         var meta = new HtmlElement("meta");

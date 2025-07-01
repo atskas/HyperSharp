@@ -13,7 +13,7 @@ internal class HtmlRoot : HtmlElement
     /// <summary>
     /// Root element of an HTML document.
     /// </summary>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Html(Action innerContent)
     {
         elementStack.Push(this);
@@ -24,8 +24,8 @@ internal class HtmlRoot : HtmlElement
     /// <summary>
     /// Root element of an HTML document.
     /// </summary>
-    /// <param name="attributes"></param>
-    /// <param name="innerContent"></param>
+    /// <param name="attributes">Attributes to add to the element.</param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Html(AttributeBuilder attributes, Action innerContent)
     {
         foreach (var attr in attributes.Attributes)

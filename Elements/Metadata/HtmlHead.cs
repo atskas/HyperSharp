@@ -14,7 +14,7 @@ internal class HtmlHead : HtmlElement
     /// <summary>
     /// Contains metadata and resources needed by the browser but not directly displayed.
     /// </summary>
-    /// <param name="innerContent"></param>
+    /// <param name="innerContent">The content of the element.</param>
     public void Head(Action innerContent)
     {
         var head = new HtmlElement("head");

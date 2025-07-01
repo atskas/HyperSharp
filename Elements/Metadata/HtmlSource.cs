@@ -14,7 +14,7 @@ internal class HtmlSource : HtmlElement
     /// <summary>
     /// Specifies alternative media resources for media elements.
     /// </summary>
-    /// <param name="attributes"></param>
+    /// <param name="attributes">Attributes to add to the element.</param>
     public void Source(AttributeBuilder attributes)
     {
         var source = new HtmlElement("source", attributes.Attributes);

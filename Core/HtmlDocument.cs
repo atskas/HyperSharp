@@ -325,13 +325,14 @@ public class HtmlDocument
     /// <summary>
     /// Sets file name.
     /// </summary>
-    /// <param name="fileName"></param>
+    /// <param name="fileName">The name of the output HTML file (without path).</param>
     public void SetFileName(string fileName) => compiler.OutputFileName = fileName;
     
     /// <summary>
     /// User's CSS file path.
+    /// All .css files in this path will be copied to the output folder's /CSS directory.
     /// </summary>
-    /// <param name="path"></param>
+    /// <param name="path">The path where the user keeps their CSS files / The direct path to a CSS file.</param>
     public void SetUserCssPath(string path) => compiler.UserCssPath = path;
 
     /// <summary>

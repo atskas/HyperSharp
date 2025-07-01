@@ -35,7 +35,7 @@ internal class HtmlElement
     
     public void AddChild(HtmlElement child) => Children.Add(child);
     public void SetAttribute(string name, string value) => Attributes[name] = value;
-
+    
     public string Build(IndentationHelper indentation)
     {
         var attrString = Attributes.Count > 0
