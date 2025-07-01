@@ -16,7 +16,7 @@
 
 To start working with HyperSharp, create a new ``HtmlDocument``:
 ```cs
-private HtmlDocument Document = new();
+private static HtmlDocument Document = new();
 ```
 You can then use its methods to define HTML structure and elements programmatically.
 
