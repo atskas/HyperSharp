@@ -26,6 +26,8 @@ internal class HtmlCompiler
                 string fileName = Path.GetFileName(cssFilePath); 
                 string destPath = Path.Combine(cssOutputDir, fileName);
                 
+                foreach(var file in Directory.GetFiles(UserCssPath, "*.css"))
+                    Console.WriteLine("Found CSS file: " + file);
                 File.Copy(cssFilePath, destPath, overwrite: true); 
                 Console.WriteLine($"Copied CSS file: {fileName} to {destPath}");
             }
