@@ -16,7 +16,7 @@ internal class HtmlLink : HtmlElement
     /// Typically placed inside the 'Head' element.
     /// </summary>
     /// <param name="rel">The relationship between the document and the linked resource.</param>
-    /// <param name="filePath">The path or URL to the css file.</param>
+    /// <param name="href">The path or URL to the css file.</param>
     public void Link(string rel, string href)
     {
         var link = new HtmlElement("link");
