@@ -148,10 +148,10 @@ public class HtmlDocument
     }
 
     /// <inheritdoc cref="HtmlButton.Button(Action)"/>
-    public void Button(Action innerConent)
+    public void Button(Action innerContent)
     {
         EnsureRoot();
-        elements.HtmlButton.Button(innerConent);
+        elements.HtmlButton.Button(innerContent);
     }
 
     /// <inheritdoc cref="HtmlButton.Button(string, AttributeBuilder attributes)"/>
@@ -285,6 +285,20 @@ public class HtmlDocument
 
     /// <inheritdoc cref="HtmlHeading.Heading(Action, AttributeBuilder, int)"/>
     public void Heading(Action innerContent, AttributeBuilder attributes, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(innerContent, attributes, level);
+    }
+    
+    /// <inheritdoc cref="HtmlHeading.Heading(string, AttributeBuilder, int)"/>
+    public void Heading(string innerContent, AttributeBuilder attributes, int level)
+    {
+        EnsureRoot();
+        elements.HtmlHeading.Heading(innerContent, attributes, level);
+    }
+    
+    /// <inheritdoc cref="HtmlHeading.Heading(AttributeBuilder, string, int)"/>
+    public void Heading(AttributeBuilder attributes, string innerContent, int level)
     {
         EnsureRoot();
         elements.HtmlHeading.Heading(innerContent, attributes, level);
