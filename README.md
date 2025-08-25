@@ -48,4 +48,4 @@ dotnet build
 >  
 > In the meantime, you can use its features by creating your own `Main` method and calling HyperSharp classes directly.  
 >  
->  [See CONTRIBUTING.md](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) if you’d like to help out!
+>  [See GitHub's contribution guide](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) if you’d like to help out!
