@@ -16,9 +16,9 @@ public class ElementInit
     internal readonly HtmlTitle HtmlTitle;
     internal readonly HtmlMeta HtmlMeta;
     internal readonly HtmlIFrame HtmlIFrame;
-    internal readonly HtmlVideo HtmlVideo;
     internal readonly HtmlSource HtmlSource;
     internal readonly HtmlHeading HtmlHeading;
+    internal readonly HtmlParagraph HtmlParagraph;
     internal HtmlRoot Root;
 
     /// <summary>
@@ -37,9 +37,9 @@ public class ElementInit
         HtmlTitle = new HtmlTitle(ElementStack);
         HtmlMeta = new HtmlMeta(ElementStack);
         HtmlIFrame = new HtmlIFrame(ElementStack);
-        HtmlVideo = new HtmlVideo(ElementStack);
         HtmlSource = new HtmlSource(ElementStack);
         HtmlHeading = new HtmlHeading(ElementStack);
+        HtmlParagraph = new HtmlParagraph(ElementStack);
     }
 
 }

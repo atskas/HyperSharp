@@ -38,28 +38,16 @@ internal class HtmlSpan : HtmlElement
     /// <summary>
     /// Generic inline container for phrasing content.
     /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    /// <param name="innerContent">The content of the element.</param>
-    public void Span(AttributeBuilder attributes, Action innerContent)
-    {
-        var span = new HtmlElement("span", attributes.Attributes);
-        
-        elementStack.Peek().AddChild(span);
-        
-        elementStack.Push(span);
-        innerContent();
-        elementStack.Pop();
-    }
-    
-    /// <summary>
-    /// Generic inline container for phrasing content.
-    /// </summary>
     /// <param name="innerContent">The content of the element.</param>
     /// <param name="attributes">Attributes to add to the element.</param>
-    public void Span(Action innerContent, AttributeBuilder attributes)
+    public void Span(Action innerContent, params AttributeBuilder[] attributes)
     {
-        var span = new HtmlElement("span", attributes.Attributes);
-        
+        var span = new HtmlElement("span");
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                span.Attributes.Add(kv.Key, kv.Value);
+        }
         elementStack.Peek().AddChild(span);
         
         elementStack.Push(span);
@@ -72,20 +60,14 @@ internal class HtmlSpan : HtmlElement
     /// </summary>
     /// <param name="innerContent">The text content of the element.</param>
     /// <param name="attributes">Attributes to add to the element.</param>
-    public void Span(string innerContent, AttributeBuilder attributes)
+    public void Span(string innerContent, params AttributeBuilder[] attributes)
     {
-        var span = new HtmlElement("span", attributes.Attributes) { InnerText = innerContent };
-        elementStack.Peek().AddChild(span);
-    }
-    
-    /// <summary>
-    /// Generic inline container for phrasing content.
-    /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    /// <param name="innerContent">The text content of the element.</param>
-    public void Span(AttributeBuilder attributes, string innerContent)
-    {
-        var span = new HtmlElement("span", attributes.Attributes) { InnerText = innerContent };
+        var span = new HtmlElement("span") { InnerText = innerContent };
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                span.Attributes.Add(kv.Key, kv.Value);
+        }
         elementStack.Peek().AddChild(span);
     }
 }

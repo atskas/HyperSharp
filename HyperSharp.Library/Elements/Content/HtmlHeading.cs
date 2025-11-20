@@ -9,7 +9,6 @@ internal class HtmlHeading : HtmlElement
     // Base tag placeholder, actual tag set dynamically per heading level.
     private static string name = "h";
     
-    
     public HtmlHeading(Stack<HtmlElement> elementStack) : base(name)
     {
         this.elementStack = elementStack;
@@ -54,32 +53,18 @@ internal class HtmlHeading : HtmlElement
     /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="innerContent">The content of the heading.</param>
     /// <param name="level">The level of the heading (1 to 6).</param>
-    public void Heading(AttributeBuilder attributes, Action innerContent, int level)
+    public void Heading(Action innerContent, int level, params AttributeBuilder[] attributes)
     {
         level = Math.Clamp(level, 1, 6);
 
-        var heading = new HtmlElement($"h{level}", attributes.Attributes);
+        var heading = new HtmlElement($"h{level}");
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                Attributes.Add(kv.Key, kv.Value);
+        }
         elementStack.Peek().AddChild(heading);
         
-        elementStack.Push(heading);
-        innerContent();
-        elementStack.Pop();
-    }
-    
-    /// <summary>
-    /// Represents a section title or heading in a document with custom attributes.
-    /// Headings range from level 1 (most important) to level 6 (least important).
-    /// </summary>
-    /// <param name="innerContent">The content of the heading.</param>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    /// <param name="level">The level of the heading (1 to 6).</param>
-    public void Heading(Action innerContent, AttributeBuilder attributes, int level)
-    {
-        level = Math.Clamp(level, 1, 6);
-
-        var heading = new HtmlElement($"h{level}", attributes.Attributes);
-        elementStack.Peek().AddChild(heading);
-
         elementStack.Push(heading);
         innerContent();
         elementStack.Pop();
@@ -92,26 +77,16 @@ internal class HtmlHeading : HtmlElement
     /// <param name="innerContent">The text content of the heading.</param>
     /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="level">The level of the heading (1 to 6)</param>
-    public void Heading(string innerContent, AttributeBuilder attributes, int level)
+    public void Heading(string innerContent, int level, params AttributeBuilder[] attributes)
     {
         level = Math.Clamp(level, 1, 6);
         
-        var heading = new HtmlElement($"h{level}", attributes.Attributes) { InnerText = innerContent };
-        elementStack.Peek().AddChild(heading);
-    }
-    
-    /// <summary>
-    /// Represents a section title or heading in a document with custom attributes.
-    /// Heading range from level 1 (most important) to level 6 (least important)
-    /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    /// <param name="innerContent">The text content of the heading.</param>
-    /// <param name="level">The level of the heading (1 to 6)</param>
-    public void Heading(AttributeBuilder attributes, string innerContent, int level)
-    {
-        level = Math.Clamp(level, 1, 6);
-        
-        var heading = new HtmlElement($"h{level}", attributes.Attributes) { InnerText = innerContent };
+        var heading = new HtmlElement($"h{level}") { InnerText = innerContent };
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                Attributes.Add(kv.Key, kv.Value);
+        }
         elementStack.Peek().AddChild(heading);
     }
 }

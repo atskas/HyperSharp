@@ -33,15 +33,8 @@ public class HtmlDocument
         elements.HtmlDiv.Div(innerContent);
     }
 
-    /// <inheritdoc cref="HtmlDiv.Div(AttributeBuilder attributes ,Action)"/>
-    public void Div(AttributeBuilder attributes, Action innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlDiv.Div(attributes, innerContent);
-    }
-
-    /// <inheritdoc cref="HtmlDiv.Div(Action, AttributeBuilder attributes)"/>
-    public void Div(Action innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlDiv.Div(Action, AttributeBuilder[])"/>
+    public void Div(Action innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlDiv.Div(innerContent, attributes);
@@ -65,32 +58,18 @@ public class HtmlDocument
         elements.HtmlSpan.Span(innerConent);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(string, AttributeBuilder attributes)"/>
-    public void Span(string innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlSpan.Span(string, AttributeBuilder[])"/>
+    public void Span(string innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlSpan.Span(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlSpan.Span(Action, AttributeBuilder attributes)"/>
-    public void Span(Action innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlSpan.Span(Action, AttributeBuilder[])"/>
+    public void Span(Action innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlSpan.Span(innerContent, attributes);
-    }
-
-    /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, string)"/>
-    public void Span(AttributeBuilder attributes, string innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlSpan.Span(attributes, innerContent);
-    }
-
-    /// <inheritdoc cref="HtmlSpan.Span(AttributeBuilder attributes, Action)"/>
-    public void Span(AttributeBuilder attributes, Action innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlSpan.Span(attributes, innerContent);
     }
 
     #endregion
@@ -100,8 +79,8 @@ public class HtmlDocument
     /// <inheritdoc cref="HtmlRoot.Html(Action)"/>
     public void Html(Action innerContent) => elements.Root.Html(innerContent);
 
-    /// <inheritdoc cref="HtmlRoot.Html(AttributeBuilder attributes, Action)"/>
-    public void Html(AttributeBuilder attributes, Action innerContent) => elements.Root.Html(attributes, innerContent);
+    /// <inheritdoc cref="HtmlRoot.Html(Action, AttributeBuilder[])"/>
+    public void Html(Action innerContent, params AttributeBuilder[] attributes) => elements.Root.Html(innerContent, attributes);
 
     #endregion
 
@@ -154,32 +133,18 @@ public class HtmlDocument
         elements.HtmlButton.Button(innerContent);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(string, AttributeBuilder attributes)"/>
-    public void Button(string innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlButton.Button(string, AttributeBuilder[])"/>
+    public void Button(string innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlButton.Button(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlButton.Button(Action, AttributeBuilder attributes)"/>
-    public void Button(Action innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlButton.Button(Action, AttributeBuilder[])"/>
+    public void Button(Action innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlButton.Button(innerContent, attributes);
-    }
-
-    /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, string)"/>
-    public void Button(AttributeBuilder attributes, string innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlButton.Button(attributes, innerContent);
-    }
-
-    /// <inheritdoc cref="HtmlButton.Button(AttributeBuilder attributes, Action)"/>
-    public void Button(AttributeBuilder attributes, Action innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlButton.Button(attributes, innerContent);
     }
 
     #endregion
@@ -197,7 +162,7 @@ public class HtmlDocument
 
     #region Meta
 
-    /// <inheritdoc cref="HtmlMeta.Meta(AttributeBuilder attributes)"/>
+    /// <inheritdoc cref="HtmlMeta.Meta(AttributeBuilder[])"/>
     public void Meta(AttributeBuilder attributes)
     {
         EnsureRoot();
@@ -209,55 +174,45 @@ public class HtmlDocument
     #region IFrame
 
 
-    /// <inheritdoc cref="HtmlIFrame.IFrame(AttributeBuilder attributes)"/>
-    public void IFrame(AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlIFrame.IFrame(AttributeBuilder[])"/>
+    public void IFrame(params AttributeBuilder[] attributes)
     {
         EnsureRoot();
         elements.HtmlIFrame.IFrame(attributes);
     }
 
     #endregion
+    
+    #region Paragraph
 
-    #region Video
-
-    /// <inheritdoc cref="HtmlVideo.Video(AttributeBuilder attributes)"/>
-    public void Video(AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlParagraph.Paragraph(Action)"/>
+    public void Paragraph(Action innerContent)
     {
         EnsureRoot();
-        elements.HtmlVideo.Video(attributes);
+        elements.HtmlParagraph.Paragraph(innerContent);
     }
 
-    /// <inheritdoc cref="HtmlVideo.Video(Action innerContent, AttributeBuilder attributes)"/>
-    public void Video(Action innerContent, AttributeBuilder attributes)
+    /// <inheritdoc cref="HtmlParagraph.Paragraph(string)"/>
+    public void Paragraph(string innerContent)
     {
         EnsureRoot();
-        elements.HtmlVideo.Video(innerContent, attributes);
+        elements.HtmlParagraph.Paragraph(innerContent);
+    }
+
+    /// <inheritdoc cref="HtmlParagraph.Paragraph(Action, AttributeBuilder[])"/>
+    public void Paragraph(Action innerContent, params AttributeBuilder[] attributes)
+    {
+        EnsureRoot();
+        elements.HtmlParagraph.Paragraph(innerContent, attributes);
     }
     
-    /// <inheritdoc cref="HtmlVideo.Video(AttributeBuilder attributes, Action innerContent)"/>
-    public void Video(AttributeBuilder attributes, Action innerContent)
+    /// <inheritdoc cref="HtmlParagraph.Paragraph(string, AttributeBuilder[])"/>
+    public void Paragraph(string innerContent, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
-        elements.HtmlVideo.Video(attributes, innerContent);
+        elements.HtmlParagraph.Paragraph(innerContent, attributes);
     }
 
-    /// <inheritdoc cref="HtmlVideo.Video(Action innerContent)"/>
-    public void Video(Action innerContent)
-    {
-        EnsureRoot();
-        elements.HtmlVideo.Video(innerContent);
-    }
-
-    #endregion
-    
-    #region Source
-
-    public void Source(AttributeBuilder source)
-    {
-        EnsureRoot();
-        elements.HtmlSource.Source(source);
-    } 
-    
     #endregion
     
     #region Heading
@@ -276,32 +231,18 @@ public class HtmlDocument
         elements.HtmlHeading.Heading(innerContent, level);
     }
 
-    /// <inheritdoc cref="HtmlHeading.Heading(AttributeBuilder, Action, int)"/>
-    public void Heading(AttributeBuilder attributes, Action innerContent, int level)
+    /// <inheritdoc cref="HtmlHeading.Heading(Action, int, AttributeBuilder[])"/>
+    public void Heading(Action innerContent, int level, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
-        elements.HtmlHeading.Heading(attributes, innerContent, level);
-    }
-
-    /// <inheritdoc cref="HtmlHeading.Heading(Action, AttributeBuilder, int)"/>
-    public void Heading(Action innerContent, AttributeBuilder attributes, int level)
-    {
-        EnsureRoot();
-        elements.HtmlHeading.Heading(innerContent, attributes, level);
+        elements.HtmlHeading.Heading(innerContent, level, attributes);
     }
     
-    /// <inheritdoc cref="HtmlHeading.Heading(string, AttributeBuilder, int)"/>
-    public void Heading(string innerContent, AttributeBuilder attributes, int level)
+    /// <inheritdoc cref="HtmlHeading.Heading(string, int, AttributeBuilder[])"/>
+    public void Heading(string innerContent, int level, params AttributeBuilder[] attributes)
     {
         EnsureRoot();
-        elements.HtmlHeading.Heading(innerContent, attributes, level);
-    }
-    
-    /// <inheritdoc cref="HtmlHeading.Heading(AttributeBuilder, string, int)"/>
-    public void Heading(AttributeBuilder attributes, string innerContent, int level)
-    {
-        EnsureRoot();
-        elements.HtmlHeading.Heading(innerContent, attributes, level);
+        elements.HtmlHeading.Heading(innerContent, level, attributes);
     }
 
     #endregion

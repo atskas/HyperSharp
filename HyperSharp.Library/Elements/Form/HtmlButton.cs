@@ -38,14 +38,19 @@ internal class HtmlButton : HtmlElement
     /// <summary>
     /// Clickable button.
     /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="innerContent">The content of the element.</param>
-    public void Button(AttributeBuilder attributes, Action innerContent)
+    /// <param name="attributes">Attributes to add to the element.</param>
+    public void Button(Action innerContent, params AttributeBuilder[] attributes)
     {
-        var span = new HtmlElement("button", attributes.Attributes);
-        elementStack.Peek().AddChild(span);
+        var button = new HtmlElement("button");
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                button.Attributes.Add(kv.Key, kv.Value);
+        }
+        elementStack.Peek().AddChild(button);
         
-        elementStack.Push(span);
+        elementStack.Push(button);
         innerContent();
         elementStack.Pop();
     }
@@ -55,35 +60,14 @@ internal class HtmlButton : HtmlElement
     /// </summary>
     /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="innerContent">The text content of the element.</param>
-    public void Button(AttributeBuilder attributes, string innerContent)
+    public void Button(string innerContent, params AttributeBuilder[] attributes)
     {
-        var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };
-        elementStack.Peek().AddChild(span);
-    }
-    
-    /// <summary>
-    /// Clickable button.
-    /// </summary>
-    /// <param name="innerContent">The content of the element.</param>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    public void Button(Action innerContent, AttributeBuilder attributes)
-    {
-        var span = new HtmlElement("button", attributes.Attributes);
-        elementStack.Peek().AddChild(span);
-
-        elementStack.Push(span);
-        innerContent();
-        elementStack.Pop();
-    }
-    
-    /// <summary>
-    /// Clickable button.
-    /// </summary>
-    /// <param name="innerContent">The text content of the element.</param>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    public void Button(string innerContent, AttributeBuilder attributes)
-    {
-        var span = new HtmlElement("button", attributes.Attributes) { InnerText = innerContent };
-        elementStack.Peek().AddChild(span);
+        var button = new HtmlElement("button") { InnerText = innerContent };
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                button.Attributes.Add(kv.Key, kv.Value);
+        }
+        elementStack.Peek().AddChild(button);
     }
 }

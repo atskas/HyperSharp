@@ -24,13 +24,14 @@ internal class HtmlRoot : HtmlElement
     /// <summary>
     /// Root element of an HTML document.
     /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
     /// <param name="innerContent">The content of the element.</param>
-    public void Html(AttributeBuilder attributes, Action innerContent)
+    /// <param name="attributes">Attributes to add to the element.</param>
+    public void Html(Action innerContent, params AttributeBuilder[] attributes)
     {
-        foreach (var attr in attributes.Attributes)
+        foreach (var attr in attributes)
         {
-            this.Attributes[attr.Key] = attr.Value;
+            foreach (var kv in attr.Attributes)
+                Attributes.Add(kv.Key, kv.Value);
         }
         
         elementStack.Push(this);

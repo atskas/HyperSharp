@@ -16,11 +16,14 @@ internal class HtmlMeta : HtmlElement
     /// Typically placed inside the 'Head' element.
     /// </summary>
     /// <param name="attributes">Attributes to add to the element.</param>
-    public void Meta(AttributeBuilder attributes)
+    public void Meta(params AttributeBuilder[] attributes)
     {
         var meta = new HtmlElement("meta");
-        foreach (var (key, value) in attributes.Attributes)
-            meta.SetAttribute(key, value);
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                meta.SetAttribute(kv.Key, kv.Value);
+        }
 
         elementStack.Peek().AddChild(meta);
     }

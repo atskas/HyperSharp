@@ -15,9 +15,14 @@ internal class HtmlIFrame : HtmlElement
     /// Embeds another HTML document within the current webpage.
     /// </summary>
     /// <param name="attributes">Attributes to add to the element.</param>
-    public void IFrame(AttributeBuilder attributes)
+    public void IFrame(params AttributeBuilder[] attributes)
     {
-        var iframe = new HtmlElement("iframe", attributes.Attributes);
+        var iframe = new HtmlElement("iframe");
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                Attributes.Add(kv.Key, kv.Value);
+        }
         elementStack.Peek().AddChild(iframe);
     }
 }

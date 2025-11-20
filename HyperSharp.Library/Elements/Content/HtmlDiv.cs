@@ -28,27 +28,17 @@ internal class HtmlDiv : HtmlElement
     /// <summary>
     /// Container element used to group other elements together.
     /// </summary>
-    /// <param name="attributes">Attributes to add to the element.</param>
-    /// <param name="innerContent">The content of the element.</param>
-    public void Div(AttributeBuilder attributes, Action innerContent)
-    {
-        var div = new HtmlElement("div", attributes.Attributes);
-        
-        elementStack.Peek().AddChild(div);
-        
-        elementStack.Push(div);
-        innerContent();
-        elementStack.Pop();
-    }
-    
-    /// <summary>
-    /// Container element used to group other elements together.
-    /// </summary>
     /// <param name="innerContent">The content of the element.</param>
     /// <param name="attributes">Attributes to add to the element.</param>
-    public void Div(Action innerContent, AttributeBuilder attributes)
+    public void Div(Action innerContent, params AttributeBuilder[] attributes)
     {
-        var div = new HtmlElement("div", attributes.Attributes);
+        var div = new HtmlElement("div");
+        
+        foreach (var attr in attributes)
+        {
+            foreach (var kv in attr.Attributes)
+                div.Attributes.Add(kv.Key, kv.Value);
+        }
         
         elementStack.Peek().AddChild(div);
         

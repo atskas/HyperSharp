@@ -140,4 +140,12 @@ public class AttributeBuilder
     /// <param name="height"></param>
     /// <returns></returns>
     public AttributeBuilder Height(string height) => Set("height", height);
+    
+    /// <summary>
+    /// Provides alternative information for certain elements (like an image) if the
+    /// user for some reason cannot view it.
+    /// </summary>
+    /// <param name="alt"></param>
+    /// <returns></returns>
+    public AttributeBuilder Alt(string alt) => Set("alt", alt);
 }
