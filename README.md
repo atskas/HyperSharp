@@ -12,40 +12,46 @@
 ### Requirements
 - .NET 6.0 or later
 
-### Usage
-
-To start working with HyperSharp, create a new ``HtmlDocument``:
-```cs
-private static HtmlDocument Document = new();
-```
-You can then use its methods to define HTML structure and elements programmatically.
-
-
-### Configuration
-
-You can customize the output by setting the following properties:
-
-- **`OutputFileName`** — Name of the generated HTML file (default: e.g., `output.html`)  
-- **`OutputPath`** — Directory where the output file is saved (default: `Documents/HyperSharp_Output`)  
-- **`UserCssPath`** — Optional path to a custom CSS file or a directory holding CSS files to style the generated HTML
-
-If you don't specify the output path, HyperSharp will save the output to the default path.
-
 ### Installation
 
-Clone the repository:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/atskas/HyperSharp
 cd HyperSharp
-dotnet build
 ```
 
-> **Developer Note:**  
-> HyperSharp is under **active development**. It’s functional, but not yet a complete library.
->  
-> Currently, it runs as an executable project for easier testing. It will be converted into a standalone library soon.  
->  
-> In the meantime, you can use its features by creating your own `Main` method and calling HyperSharp classes directly.  
->  
+2. Build the library:
+
+```bash
+dotnet build HyperSharp.Library/HyperSharp.Library.csproj
+```
+This produces `HyperSharp.Library.dll` in the `bin` folder.
+
+3. Reference the library in your project:
+
+```bash
+dotnet add path/to/Project.csproj reference HyperSharp.Library/HyperSharp.Library.csproj
+```
+
+### Usage
+
+Start working with HyperSharp by creating a new `HtmlDocument`:
+```csharp
+private static HtmlDocument Document = new();
+```
+Use its methods to define HTML structure and elements programmatically.
+
+### Configuration
+
+You can customize the output by setting the following properties:
+- `OutputFileName` - Name of the generated HTML file (default: `output.html`)  
+- `OutputPath` - Directory where the output file is saved (default: `Documents/HyperSharp_Output`)  
+- `UserCssPath` - Optional path to a custom CSS file or directory for styling the generated HTML  
+
+You can run the demo project to check out `HyperSharp`'s possibilities.
+ ```bash
+dotnet run --project HyperSharp.Testing/HyperSharp.Testing.csproj
+```
+
 >  [See GitHub's contribution guide](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) if you’d like to help out!
